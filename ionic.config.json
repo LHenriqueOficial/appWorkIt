@@ -1,0 +1,7 @@
+{
+  "name": "appWorkIt",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
