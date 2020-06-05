@@ -26,7 +26,24 @@ const routes: Routes = [
   {
     path: 'inicial',
     loadChildren: () => import('./pages/inicial/inicial.module').then( m => m.InicialPageModule)
-  }
+  },
+  {
+    path: 'edit-perfil',
+    loadChildren: () => import('./pages/edit-perfil/edit-perfil.module').then( m => m.EditPerfilPageModule)
+  },
+  {
+    path: 'perfil-pessoal',
+    loadChildren: () => import('./pages/perfil-pessoal/perfil-pessoal.module').then( m => m.PerfilPessoalPageModule)
+  },
+  {
+    path: 'perfil-profissional',
+    loadChildren: () => import('./pages/perfil-profissional/perfil-profissional.module').then( m => m.PerfilProfissionalPageModule)
+  },
+  {
+    path: 'dados-financeiros',
+    loadChildren: () => import('./pages/dados-financeiros/dados-financeiros.module').then( m => m.DadosFinanceirosPageModule)
+  },
+ 
 ];
 
 @NgModule({

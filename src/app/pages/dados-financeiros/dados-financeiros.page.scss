@@ -1,5 +1,5 @@
 ion-item {
-    --background: #1e2023;
+    --background: #3a3c3f;
     --color: #fff;
     // ion-input {
     // border-style: groove;
@@ -8,19 +8,40 @@ ion-item {
     // }
 }
 
+ion-back-button {
+    color: #f5b026;
+}
+
+ion-title {
+    color: #f5b026;
+}
+
+ion-content {
+    --background: #3a3c3f;
+}
+
 .icon-start {
     font-family: 'Times New Roman';
     font-size: 35px;
     color: #f5b026;
 }
 
-ion-toolbar {
-    --background: #3a3c3f;
+ion-card {
+    width: 100%;
 }
 
-ion-content {
-    --background: url('/assets/img/Google-Maps.jpg') 100% 100%;
-    // --background: url(../assets//fundo.jpg) 0 0/100% 100% no-repeat;
+.item-card {
+    height: 200px;
+}
+
+.icon-card {
+    font-family: 'Times New Roman';
+    font-size: 40px;
+    color: #f5b026;
+}
+
+ion-toolbar {
+    --background: #3a3c3f;
 }
 
 ion-button {
@@ -30,10 +51,6 @@ ion-button {
 ion-icon {
     color: #f5b026;
     padding-right: 10px;
-}
-
-.entry {
-    font-size: 100px;
 }
 
 ion-label {

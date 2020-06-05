@@ -1,38 +1,33 @@
 <ion-header>
     <ion-toolbar>
-
-        <ion-icon class="icon-start" name="cog" slot="start" routerLink="/edit-perfil"></ion-icon>
-
-        <ion-avatar slot="end" size="small">
-            <img src="/assets/img/lauro.perfil.jpeg" />
+        <ion-buttons slot="start">
+            <ion-back-button>
+                <ion-icon name="arrow-back-outline"></ion-icon>
+            </ion-back-button>
+        </ion-buttons>
+        <ion-avatar slot="end" size="small" color="primary">
+            <ion-icon class="icon-card" src="assets/icon/perfil-pessoal.svg"></ion-icon>
         </ion-avatar>
-        <ion-label>
-            <h2><b>Lauro Henrique</b></h2>
-            <p> Desenvolvedor Web</p>
-        </ion-label>
+        <ion-title>
+            <b>Perfil Pessoal</b>
+        </ion-title>
     </ion-toolbar>
 </ion-header>
 
-<ion-content class="background">
-
+<ion-content>
 
 
 </ion-content>
 
-
 <ion-tabs>
     <ion-tab-bar slot="bottom">
-        <ion-tab-button>
+        <ion-tab-button routerLink="/inicial">
             <ion-icon name="home"></ion-icon>
             <ion-label>Home</ion-label>
         </ion-tab-button>
         <ion-tab-button>
             <ion-icon name="document-text"></ion-icon>
             <ion-label>Relatórios</ion-label>
-        </ion-tab-button>
-        <ion-tab-button routerLink="/login">
-            <ion-icon class="icon-card" src="assets/icon/exit.svg"></ion-icon>
-            <ion-label>Sair</ion-label>
         </ion-tab-button>
         <ion-tab-button>
             <ion-icon name="mail"></ion-icon>

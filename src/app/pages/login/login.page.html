@@ -4,7 +4,7 @@
             <ion-row justify-content-center>
                 <ion-col style="text-align: center;" size-md="6" size-lg="5" size-xs="12">
                     <div class="n2">
-                        <ion-img src="../assets/icon/nome-logo3.png" alt="" style="position: relative;"></ion-img>
+                        <ion-img src="../assets/img/nome-logo3.png" alt="" style="position: relative;"></ion-img>
                         <h3>Login</h3>
                     </div>
                     <div padding>
@@ -16,7 +16,7 @@
                         </ion-item>
                     </div>
                     <div padding>
-                        <ion-button (click)="showScreen()" size="small" [disabled]="form.invalid" expand="block">Acessar</ion-button>
+                        <ion-button (click)="showScreen()" routerLink="/inicial" size="small" [disabled]="form.invalid" expand="block">Acessar</ion-button>
                     </div>
                 </ion-col>
             </ion-row>
