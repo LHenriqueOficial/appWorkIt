@@ -9,14 +9,14 @@
                     </div>
                     <div padding>
                         <ion-item>
-                            <ion-input name="email" type="email" placeholder="nome@email.com" ngModel required></ion-input>
+                            <ion-input name="email" type="email" placeholder="nome@email.com" name="email" [(ngModel)]="usuario.email" ngModel email ngModel required></ion-input>
                         </ion-item>
                         <ion-item>
-                            <ion-input name="password" type="password" placeholder="Senha" ngModel required></ion-input>
+                            <ion-input name="password" type="password" ngModel minlength="6" placeholder="Senha" [(ngModel)]="usuario.senha" ngModel required></ion-input>
                         </ion-item>
                     </div>
                     <div padding>
-                        <ion-button (click)="showScreen()" routerLink="/inicial" size="small" [disabled]="form.invalid" expand="block">Acessar</ion-button>
+                        <ion-button (click)="login()" size="small" [disabled]="form.invalid" expand="block">Acessar</ion-button>
                     </div>
                 </ion-col>
             </ion-row>

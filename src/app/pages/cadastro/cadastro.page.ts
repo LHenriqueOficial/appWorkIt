@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Usuario } from 'src/app/Model/usuario';
+import { AlertController, NavController } from '@ionic/angular';
+import {AngularFireAuth} from 'angularfire2/auth'
+import {AngularFirestore} from 'angularfire2/firestore'
+import { async } from '@angular/core/testing';
+
 
 @Component({
   selector: 'app-cadastro',
@@ -8,15 +14,77 @@ import { Router } from '@angular/router';
 })
 export class CadastroPage implements OnInit {
 
-  constructor(private router:  Router) { }
+  public usuario: Usuario={};
+  loading: any;
+  
+  constructor( 
+    public fbAuth: AngularFireAuth ,
+    public db:AngularFirestore, 
+    public AlertCtrl :AlertController, 
+    public navCtrl : NavController,
+    private router: Router,
+    ) 
+  
+    {
+    this.usuario=new Usuario()
+   }
 
   ngOnInit() {
+
+  }
+  cadastrarUsuario(){
+    // metodo para criar usuario e enviar para fire base 
+      this.fbAuth.auth.createUserWithEmailAndPassword( this.usuario.email, this.usuario.senha).then
+    (result=>{
+      let users= this.db.collection("Usuarios") // esta recebendo a base de dados Usuarios do fireStore
+  
+      users.add({
+        nome:this.usuario.nome,
+        email:this.usuario.email,
+        senha:this.usuario.senha,
+        userId:result.user.uid
+      }).then( async ()=>{
+  
+         const alert = await this.AlertCtrl.create({
+           header:'Mensagen ',
+           subHeader:'',
+           message:'Usuário Cadastrado com Sucesso ',
+           buttons: ['Ok']
+         });
+  
+         await alert.present();
+  /// autenticando o usuario apos autenticação 
+  this.fbAuth.auth.signInWithEmailAndPassword(this.usuario.email, this.usuario.senha).then(()=>{
+  this.fbAuth.authState.subscribe(async user=>{
+    if(user){
+      this.router.navigateByUrl('inicial');
+      const alert = await this.AlertCtrl.create({
+        header:'mensagem',
+        subHeader:'',
+        message:'Usuario autenticado',
+        buttons:['Ok']
+      });
+      await alert.present();
+    }
+  })
+    // this.showScreen('sreen-inicial');
+  });
+  
+      }).catch( async ()=>{
+        const alert = await this.AlertCtrl.create({
+          header:'Menssagem',
+          subHeader:'',
+          message:'Erro ao Cadastrar Usuário',
+          buttons: ['Ok']
+        });
+  
+        await alert.present();
+          
+        
+      })
+  
+    })
   }
 
-  showScreen(){
-    
-       this.router.navigateByUrl('login');
-    
-  }
-
+ 
 }

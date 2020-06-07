@@ -42,7 +42,7 @@
 
 <ion-tabs>
     <ion-tab-bar slot="bottom">
-        <ion-tab-button>
+        <ion-tab-button routerLink="/inicial">
             <ion-icon name="home"></ion-icon>
             <ion-label>Home</ion-label>
         </ion-tab-button>
@@ -50,7 +50,7 @@
             <ion-icon name="document-text"></ion-icon>
             <ion-label>Relatórios</ion-label>
         </ion-tab-button>
-        <ion-tab-button routerLink="/login">
+        <ion-tab-button (click)="logOut()">
             <ion-icon class="icon-card" src="assets/icon/exit.svg"></ion-icon>
             <ion-label>Sair</ion-label>
         </ion-tab-button>

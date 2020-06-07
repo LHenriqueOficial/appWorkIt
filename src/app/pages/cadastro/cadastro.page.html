@@ -9,20 +9,20 @@
                     </div>
                     <div padding>
                         <ion-item>
-                            <ion-input name="name" type="text" placeholder="Nome" ngModel required></ion-input>
+                            <ion-input name="name" type="text" placeholder="Nome" [(ngModel)]="usuario.nome" ngModel required></ion-input>
                         </ion-item>
                         <ion-item>
-                            <ion-input name="email" type="email" placeholder="nome@email.com" ngModel required></ion-input>
+                            <ion-input name="email" type="email" placeholder="nome@email.com" [(ngModel)]="usuario.email" name="email" ngModel email ngModel required></ion-input>
                         </ion-item>
                         <ion-item>
-                            <ion-input name="password" type="password" placeholder="Senha" ngModel required></ion-input>
+                            <ion-input name="password" type="password" placeholder="Senha" [(ngModel)]="usuario.senha" ngModel minlength="6" ngModel required></ion-input>
                         </ion-item>
                         <ion-item>
-                            <ion-input name="confirm" type="password" placeholder="Repita senha" ngModel required></ion-input>
+                            <ion-input name="confirm" type="password" ngModel minlength="6" placeholder="Repita senha" ngModel required></ion-input>
                         </ion-item>
                     </div>
                     <div padding>
-                        <ion-button (click)="showScreen()" size="small" [disabled]="form.invalid" expand="block">Cadastar</ion-button>
+                        <ion-button (click)="cadastrarUsuario()" size="small" [disabled]="form.invalid" expand="block">Cadastar</ion-button>
                     </div>
                 </ion-col>
             </ion-row>
