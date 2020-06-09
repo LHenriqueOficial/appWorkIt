@@ -8,6 +8,7 @@ export class Usuario {
     nome?: string;
     sobrenome?: string;
     cpf?: string;
+    telefone?: string;
     cnpj?: string;
     idade?: number;
     email?: string;

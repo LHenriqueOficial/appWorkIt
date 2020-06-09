@@ -39,16 +39,32 @@ const routes: Routes = [
     loadChildren: () => import('./pages/edit-perfil/edit-perfil.module').then( m => m.EditPerfilPageModule)
   },
   {
+    path: 'perfil-pessoal/:id',canActivate:[AuthGuard],
+    loadChildren: () => import('./pages/perfil-pessoal/perfil-pessoal.module').then( m => m.PerfilPessoalPageModule)
+  },
+  {
     path: 'perfil-pessoal',canActivate:[AuthGuard],
     loadChildren: () => import('./pages/perfil-pessoal/perfil-pessoal.module').then( m => m.PerfilPessoalPageModule)
+  },
+  {
+    path: 'perfil-profissional/:id',canActivate:[AuthGuard],
+    loadChildren: () => import('./pages/perfil-profissional/perfil-profissional.module').then( m => m.PerfilProfissionalPageModule)
   },
   {
     path: 'perfil-profissional',canActivate:[AuthGuard],
     loadChildren: () => import('./pages/perfil-profissional/perfil-profissional.module').then( m => m.PerfilProfissionalPageModule)
   },
   {
+    path: 'dados-financeiros/:id',canActivate:[AuthGuard],
+    loadChildren: () => import('./pages/dados-financeiros/dados-financeiros.module').then( m => m.DadosFinanceirosPageModule)
+  },
+  {
     path: 'dados-financeiros',canActivate:[AuthGuard],
     loadChildren: () => import('./pages/dados-financeiros/dados-financeiros.module').then( m => m.DadosFinanceirosPageModule)
+  },
+  {
+    path: 'teste/:id',
+    loadChildren: () => import('./pages/teste/teste.module').then( m => m.TestePageModule)
   },
   {
     path: 'teste',

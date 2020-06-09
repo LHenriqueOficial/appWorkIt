@@ -15,9 +15,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EditPerfilPage implements OnInit {
   nomeUser: any;
-  idUser: string;
-  public usuario: Usuario = {};
-  user: any = []
+  idColecao: string;
+ public usuario: Usuario ={}
 
   private usuarioSubscription: Subscription;
   id: any;
@@ -38,12 +37,13 @@ export class EditPerfilPage implements OnInit {
    }
 
   ngOnInit() {
-    this.carregaUser();
+  
   }
 
   loadUser() {
     this.usuarioSubscription = this.usuarioService.getUsuario(this.id).subscribe(data => {
       this.usuario = data;
+      console.log(this.usuario);
     });
   }
 
@@ -56,31 +56,10 @@ export class EditPerfilPage implements OnInit {
     this.router.navigateByUrl('login')
   }
 
-  carregaUser(){
-
-    this.fbAuth.authState.subscribe(user=>{
-      if (user)
-      {
-        let uid = user.uid;
-        console.log("autenticado: " + user.uid)
-        uid = user.uid;
-        this.idUser = uid;
-        console.log("teste uid  " + uid)
-        let users=this.db.collection<Usuario>("Usuarios")
-        users.ref.where("userId", "==", uid).get().then(result=>{
-               result.forEach(element =>{
-                 this.nomeUser=element.data().nome
-                 this.id= element.data().userId
-                 console.log("teste uid  " + this.nomeUser)
-               })
-            })
-      }
-      else{
-        console.log("nao autenticado")
-      }
-    })
+  rota(nomeDaPagina:string){
+    this.router.navigate([nomeDaPagina, this.id])
   
   }
-
+  
 
 }

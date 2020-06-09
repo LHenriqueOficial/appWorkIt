@@ -33,25 +33,25 @@
 
     <ion-item style="text-align: start; margin-left: auto; ">
         <ion-label position="floating">Nome:</ion-label>
-        <ion-input type=" text "></ion-input>
+        <ion-input type=" text " [(ngModel)]="usuario.nome" [(value)]="usuario.nome"></ion-input>
 
     </ion-item>
     <ion-item style="text-align: start; margin-left: auto; ">
         <ion-label position="floating">Sobrenome:</ion-label>
-        <ion-input type=" text "></ion-input>
+        <ion-input type=" text " [(ngModel)]="usuario.sobrenome" [(value)]="usuario.sobrenome"></ion-input>
     </ion-item>
 
     <ion-item style="text-align: start; margin-left: auto; ">
         <ion-label position="floating">Telefone:</ion-label>
-        <ion-input type="tel"></ion-input>
+        <ion-input type="tel" [(ngModel)]="usuario.telefone" [(value)]="usuario.telefone"></ion-input>
     </ion-item>
     <ion-item style="text-align: start; margin-left: auto; ">
         <ion-label position="floating">E-mail:</ion-label>
-        <ion-input type="email"></ion-input>
+        <ion-input type="email" [(ngModel)]="usuario.email" [(value)]="usuario.email"></ion-input>
     </ion-item>
     <ion-item style="text-align: start; margin-left: auto; ">
         <ion-label position="floating">senha:</ion-label>
-        <ion-input type="password"></ion-input>
+        <ion-input type="password" [(value)]="usuario.senha"></ion-input>
     </ion-item>
 
 
@@ -61,7 +61,7 @@
 <ion-tabs>
 
     <div padding>
-        <ion-button (click)="login() " size="small " expand="block ">Acessar</ion-button>
+        <ion-button (click)="updateUser() " size="small " expand="block ">Alterar Perfil</ion-button>
     </div>
 
 </ion-tabs>

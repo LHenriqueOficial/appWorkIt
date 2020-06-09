@@ -13,7 +13,8 @@ import { NavController } from '@ionic/angular';
 })
 export class InicialPage implements OnInit {
   nomeUser: any;
-  idUser: string;
+  idColecao: string;
+  usuario:any=[];
 
   constructor(
     private router:  Router,
@@ -31,7 +32,7 @@ export class InicialPage implements OnInit {
   }
 
   rota(){
-    this.router.navigate(['/edit-perfil', this.idUser])
+    this.router.navigate(['/edit-perfil', this.idColecao])
   
   }
 
@@ -46,17 +47,16 @@ carregaUser(){
     if (user)
     {
       let uid = user.uid;
-      this.idUser = uid;
-      console.log("autenticado: " + user.uid)
-      uid = user.uid;
-      console.log("teste uid  " + uid)
       let users=this.db.collection<Usuario>("Usuarios")
       users.ref.where("userId", "==", uid).get().then(result=>{
-             result.forEach(element =>{
-               this.nomeUser=element.data().nome
-               console.log("teste uid  " + this.nomeUser)
+             result.forEach(doc =>{
+               this.usuario.push(doc.data())
+               console.log(doc.id, ' => ' , doc.data())
+               this.idColecao = doc.id
+               console.log("id dacoleção do usuario " + this.idColecao)
              })
           })
+ 
     }
     else{
       console.log("nao autenticado")
