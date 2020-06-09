@@ -1,20 +1,19 @@
 <ion-header>
     <ion-toolbar>
 
-        <ion-icon class="icon-start" name="cog" slot="start" routerLink="/edit-perfil"></ion-icon>
-
+        <ion-icon class="icon-start" name="cog" slot="start" (click)="rota()"></ion-icon>
+        <!-- routerLink="/edit-perfil" -->
         <ion-avatar slot="end" size="small">
             <img src="/assets/img/lauro.perfil.jpeg" />
         </ion-avatar>
         <ion-label>
-            <h2><b>Lauro Henrique</b></h2>
-            <p> Desenvolvedor Web</p>
+            <h2><b>{{nomeUser}}</b></h2>
+            <p>Desenvolvedor Web</p>
         </ion-label>
     </ion-toolbar>
 </ion-header>
 
 <ion-content class="background">
-
 
 
 </ion-content>

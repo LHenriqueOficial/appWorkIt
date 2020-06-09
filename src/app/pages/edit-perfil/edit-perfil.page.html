@@ -5,7 +5,7 @@
             <img src="/assets/img/lauro.perfil.jpeg" />
         </ion-avatar>
         <ion-label>
-            <h2><b>Lauro Henrique</b></h2>
+            <h2><b>{{nomeUser}}</b></h2>
             <p> Desenvolvedor Web</p>
         </ion-label>
     </ion-toolbar>
@@ -14,15 +14,15 @@
 <ion-content>
     <ion-item class="item-card" lines="none">
         <ion-card>
-            <ion-card-header routerLink="/perfil-pessoal">
-                <!-- <ion-card-title style="font-size: 20px;">Editar</ion-card-title> -->
+            <ion-card-header (click)="showScreen('perfil-pessoal')">
+                <!-- <ion-button color="dark" [routerLink]="['/detalhes',ordem.id,ordem.equipamento]"> -->
+
                 <ion-icon class="icon-card" src="assets/icon/perfil-pessoal.svg"></ion-icon>
                 <ion-card-subtitle>Editar Perfil Pessoal</ion-card-subtitle>
             </ion-card-header>
         </ion-card>
         <ion-card>
             <ion-card-header routerLink="/perfil-profissional">
-                <!-- <ion-card-title style="font-size: 20px;">Editar</ion-card-title> -->
                 <ion-icon class="icon-card" src="assets/icon/perfil-profissional2.svg"></ion-icon>
                 <ion-card-subtitle>Editar Perfil Profissional</ion-card-subtitle>
             </ion-card-header>
@@ -31,14 +31,15 @@
     <ion-item class="item-card" lines="none">
         <ion-card>
             <ion-card-header routerLink="/dados-financeiros">
-                <!-- <ion-card-title style="font-size: 20px;">Editar</ion-card-title> -->
                 <ion-icon class="icon-card" src="assets/icon/bancario2.svg"></ion-icon>
                 <ion-card-subtitle> Editar Dados Financeiros</ion-card-subtitle>
             </ion-card-header>
         </ion-card>
     </ion-item>
 
+
 </ion-content>
+
 
 <ion-tabs>
     <ion-tab-bar slot="bottom">

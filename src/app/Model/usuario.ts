@@ -6,6 +6,7 @@ export class Usuario {
     
     idUser?: string;
     nome?: string;
+    sobrenome?: string;
     cpf?: string;
     cnpj?: string;
     idade?: number;

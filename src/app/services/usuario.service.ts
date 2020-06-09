@@ -40,4 +40,8 @@ private usuarioCollection:  AngularFirestoreCollection<Usuario>;
      return this.usuarioCollection.add(usuario);
    }
 
+   updateOrdem(id: string, product: Usuario) {
+    return this.usuarioCollection.doc<Usuario>(id).update(product);
+  }
+
 }

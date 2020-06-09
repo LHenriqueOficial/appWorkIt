@@ -31,6 +31,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/inicial/inicial.module').then( m => m.InicialPageModule)
   },
   {
+    path: 'edit-perfil/:id',canActivate:[AuthGuard],
+    loadChildren: () => import('./pages/edit-perfil/edit-perfil.module').then( m => m.EditPerfilPageModule)
+  },
+  {
     path: 'edit-perfil',canActivate:[AuthGuard],
     loadChildren: () => import('./pages/edit-perfil/edit-perfil.module').then( m => m.EditPerfilPageModule)
   },
@@ -45,6 +49,10 @@ const routes: Routes = [
   {
     path: 'dados-financeiros',canActivate:[AuthGuard],
     loadChildren: () => import('./pages/dados-financeiros/dados-financeiros.module').then( m => m.DadosFinanceirosPageModule)
+  },
+  {
+    path: 'teste',
+    loadChildren: () => import('./pages/teste/teste.module').then( m => m.TestePageModule)
   },
  
 ];

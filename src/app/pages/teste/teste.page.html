@@ -1,0 +1,69 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button>
+                <ion-icon name="arrow-back-outline"></ion-icon>
+            </ion-back-button>
+        </ion-buttons>
+        <ion-avatar slot="end" size="small" color="primary">
+            <ion-icon class="icon-card" src="assets/icon/perfil-pessoal.svg"></ion-icon>
+        </ion-avatar>
+        <ion-title>
+            <b>Perfil Pessoal</b>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form #form="ngForm">
+        <ion-grid>
+            <ion-row justify-content-center>
+                <ion-col style="text-align: center;" size-md="6" size-lg="5" size-xs="12">
+                    <div padding>
+                        <ion-item>
+                            <ion-input name="idade" type="number" placeholder="Sua idade" ngModel required></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-input name="cpf" type="text" placeholder="seu CPF" ngModel required></ion-input>
+                        </ion-item>
+                    </div>
+                    <div padding>
+                        <ion-button (click)="login()" size="small" [disabled]="form.invalid" expand="block">Acessar</ion-button>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </form>
+
+</ion-content>
+
+<ion-item>
+    <ion-tabs>
+        <ion-tab-bar slot="bottom">
+            <ion-tab-button routerLink="/inicial">
+                <ion-icon name="home"></ion-icon>
+                <ion-label>Home</ion-label>
+            </ion-tab-button>
+            <ion-tab-button>
+                <ion-icon name="document-text"></ion-icon>
+                <ion-label>Relatórios</ion-label>
+            </ion-tab-button>
+            <ion-tab-button (click)="logOut()">
+                <ion-icon class="icon-card" src="assets/icon/exit.svg"></ion-icon>
+                <ion-label>Sair</ion-label>
+            </ion-tab-button>
+            <ion-tab-button>
+                <ion-icon name="mail"></ion-icon>
+                <ion-label>Mensagem</ion-label>
+                <ion-badge>6</ion-badge>
+            </ion-tab-button>
+            <ion-tab-button>
+                <ion-icon name="layers"></ion-icon>
+                <ion-label>Atalização</ion-label>
+                <ion-badge>6</ion-badge>
+            </ion-tab-button>
+
+        </ion-tab-bar>
+    </ion-tabs>
+
+</ion-item>

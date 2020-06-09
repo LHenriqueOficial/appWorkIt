@@ -5,7 +5,7 @@
                 <ion-icon name="arrow-back-outline"></ion-icon>
             </ion-back-button>
         </ion-buttons>
-        <ion-avatar slot="end" size="small" color="primary">
+        <ion-avatar slot="end">
             <ion-icon class="icon-card" src="assets/icon/perfil-pessoal.svg"></ion-icon>
         </ion-avatar>
         <ion-title>
@@ -14,35 +14,54 @@
     </ion-toolbar>
 </ion-header>
 
+
 <ion-content>
+
+    <ion-item lines="none">
+        <ion-card class="item-card">
+            <ion-card-header>
+                <ion-avatar class="teste">
+                    <img src="/assets/img/lauro.perfil.jpeg " />
+                </ion-avatar>
+            </ion-card-header>
+            <ion-card-content>
+                <ion-icon src="assets/icon/edit.svg "></ion-icon>
+                Alterar foto perfil
+            </ion-card-content>
+        </ion-card>
+    </ion-item>
+
+    <ion-item style="text-align: start; margin-left: auto; ">
+        <ion-label position="floating">Nome:</ion-label>
+        <ion-input type=" text "></ion-input>
+
+    </ion-item>
+    <ion-item style="text-align: start; margin-left: auto; ">
+        <ion-label position="floating">Sobrenome:</ion-label>
+        <ion-input type=" text "></ion-input>
+    </ion-item>
+
+    <ion-item style="text-align: start; margin-left: auto; ">
+        <ion-label position="floating">Telefone:</ion-label>
+        <ion-input type="tel"></ion-input>
+    </ion-item>
+    <ion-item style="text-align: start; margin-left: auto; ">
+        <ion-label position="floating">E-mail:</ion-label>
+        <ion-input type="email"></ion-input>
+    </ion-item>
+    <ion-item style="text-align: start; margin-left: auto; ">
+        <ion-label position="floating">senha:</ion-label>
+        <ion-input type="password"></ion-input>
+    </ion-item>
 
 
 </ion-content>
 
-<ion-tabs>
-    <ion-tab-bar slot="bottom">
-        <ion-tab-button routerLink="/inicial">
-            <ion-icon name="home"></ion-icon>
-            <ion-label>Home</ion-label>
-        </ion-tab-button>
-        <ion-tab-button>
-            <ion-icon name="document-text"></ion-icon>
-            <ion-label>Relatórios</ion-label>
-        </ion-tab-button>
-        <ion-tab-button (click)="logOut()">
-            <ion-icon class="icon-card" src="assets/icon/exit.svg"></ion-icon>
-            <ion-label>Sair</ion-label>
-        </ion-tab-button>
-        <ion-tab-button>
-            <ion-icon name="mail"></ion-icon>
-            <ion-label>Mensagem</ion-label>
-            <ion-badge>6</ion-badge>
-        </ion-tab-button>
-        <ion-tab-button>
-            <ion-icon name="layers"></ion-icon>
-            <ion-label>Atalização</ion-label>
-            <ion-badge>6</ion-badge>
-        </ion-tab-button>
 
-    </ion-tab-bar>
+<ion-tabs>
+
+    <div padding>
+        <ion-button (click)="login() " size="small " expand="block ">Acessar</ion-button>
+    </div>
+
 </ion-tabs>
