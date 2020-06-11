@@ -42,6 +42,24 @@
     </ion-item>
 
     <ion-item style="text-align: start; margin-left: auto; ">
+        <ion-label position="floating">Pais/Região:</ion-label>
+        <ion-input type="tel" [(ngModel)]="usuario.pais" [(value)]="usuario.pais"></ion-input>
+    </ion-item>
+
+
+    <ion-item style="text-align: start; margin-left: auto; ">
+        <ion-label position="floating">Localidades neste país/região:</ion-label>
+        <ion-input type="tel" [(ngModel)]="usuario.localidade" [(value)]="usuario.localidade"></ion-input>
+    </ion-item>
+
+
+    <ion-item style="text-align: start; margin-left: auto; ">
+        <ion-label position="floating"><b>Estado:</b></ion-label>
+        <ion-select okText="Ok" cancelText="Sair" [(ngModel)]="usuario.estado">
+            <ion-select-option style="text-align: left;" *ngFor="let form of listEstados" [value]="form">{{form}}</ion-select-option>
+        </ion-select>
+    </ion-item>
+    <ion-item style="text-align: start; margin-left: auto; ">
         <ion-label position="floating">Telefone:</ion-label>
         <ion-input type="tel" [(ngModel)]="usuario.telefone" [(value)]="usuario.telefone"></ion-input>
     </ion-item>
@@ -58,10 +76,8 @@
 </ion-content>
 
 
-<ion-tabs>
-
-    <div padding>
+<ion-footer>
+    <ion-toolbar>
         <ion-button (click)="updateUser() " size="small " expand="block ">Alterar Perfil</ion-button>
-    </div>
-
-</ion-tabs>
+    </ion-toolbar>
+</ion-footer>

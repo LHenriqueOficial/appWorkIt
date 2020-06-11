@@ -40,6 +40,10 @@ export class EditPerfilPage implements OnInit {
   
   }
 
+  ngOnDestroy() {
+    this.usuarioSubscription.unsubscribe();
+  }
+
   loadUser() {
     this.usuarioSubscription = this.usuarioService.getUsuario(this.id).subscribe(data => {
       this.usuario = data;

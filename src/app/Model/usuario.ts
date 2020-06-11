@@ -1,5 +1,6 @@
 import { Profissao } from './profissao';
 import { ContaUser } from './conta-user';
+import { Formacao } from './formacao';
 
 export class Usuario {
 
@@ -9,11 +10,15 @@ export class Usuario {
     sobrenome?: string;
     cpf?: string;
     telefone?: string;
+    pais?:string;
+    localidade?:string;
+    estado?:string;
     cnpj?: string;
     idade?: number;
     email?: string;
     senha?: string;
     status?: boolean;
-    profissao?: Profissao;
+    profissao?: Array<Profissao>;
+    formacao?: Formacao;
     contaUser?: ContaUser;
 }

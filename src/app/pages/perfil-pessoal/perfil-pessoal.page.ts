@@ -19,6 +19,9 @@ export class PerfilPessoalPage implements OnInit {
   id: any;
   public usuarioSubscription: Subscription
   loading: HTMLIonLoadingElement;
+  public listEstados: Array<string>=[ "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", 
+  "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RO", "RS", "RR", "SC", "SE", "SP", "TO"]
+
 
   constructor(
     private router:  Router,
@@ -40,7 +43,10 @@ export class PerfilPessoalPage implements OnInit {
 
   ngOnInit() {
 
-  
+  }
+
+  ngOnDestroy() {
+    this.usuarioSubscription.unsubscribe();
   }
   logOut(){
     this.fbAuth.auth.signOut();
@@ -61,17 +67,17 @@ export class PerfilPessoalPage implements OnInit {
       this.usuarioService.updateUsuario(this.id, this.usuario).then(async () => {
       await this.loading.dismiss();
       const alert = await this.AlertCtrl.create({
-        header: 'mensagem',
+        header: 'Aviso',
         subHeader: '',
         message: 'Usuário Aletrado com Sucesso',
         buttons: ['Ok']
       });
       await alert.present();
       await this.ngOnInit();
-      
+
     }).catch( async ()=>{
       const alert = await this.AlertCtrl.create({
-        header:'Menssagem',
+        header:'Aviso',
         subHeader:'',
         message:'Erro ao Cadastrar Usuário',
         buttons: ['Ok']
@@ -92,7 +98,7 @@ export class PerfilPessoalPage implements OnInit {
   }
 
   async presentToast(message: string) {
-    const toast = await this.toastCtrl.create({ message, duration: 2000 });
+    const toast = await this.toastCtrl.create({ message, duration: 3000 });
     toast.present();
   }
 

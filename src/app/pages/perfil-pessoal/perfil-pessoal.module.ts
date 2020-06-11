@@ -8,12 +8,13 @@ import { PerfilPessoalPageRoutingModule } from './perfil-pessoal-routing.module'
 
 import { PerfilPessoalPage } from './perfil-pessoal.page';
 
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PerfilPessoalPageRoutingModule
+    PerfilPessoalPageRoutingModule,
   ],
   declarations: [PerfilPessoalPage]
 })

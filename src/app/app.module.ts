@@ -14,6 +14,8 @@ import { AngularFirestoreModule} from 'angularfire2/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 
+
+
 var firebaseConfig = {
   apiKey: "AIzaSyD89ehMe8mmE5mxN5d1H2m_dzGuCSfjFro",
   authDomain: "appworkit-40d0e.firebaseapp.com",
@@ -32,10 +34,11 @@ var firebaseConfig = {
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
- 
-  BrowserModule,AngularFirestoreModule, AngularFireAuthModule, 
+BrowserModule,AngularFirestoreModule, AngularFireAuthModule, 
   AngularFireModule.initializeApp(firebaseConfig),
-    IonicModule.forRoot(),
+    IonicModule.forRoot(), 
+    // SimpleMaskDirective,
+    // SimpleMaskPipe,
     AppRoutingModule
   ],
   providers: [
