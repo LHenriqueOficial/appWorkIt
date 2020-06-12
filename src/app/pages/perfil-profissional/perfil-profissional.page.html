@@ -43,6 +43,7 @@
     <ion-item style="text-align: start; margin-left: auto; ">
         <ion-label position="floating">Titulo:</ion-label>
         <ion-input type=" text " [(ngModel)]="titulo"></ion-input>
+
     </ion-item>
 
     <ion-item style="text-align: start; margin-left: auto; ">
@@ -53,17 +54,17 @@
     </ion-item>
     <ion-item style="text-align: start; margin-left: auto; ">
         <ion-label position="floating">Profissição atual:</ion-label>
-        <ion-input type="email" [(ngModel)]="usuario.email" [(value)]="usuario.email"></ion-input>
+        <ion-input type="text"></ion-input>
     </ion-item>
     <ion-item style="text-align: start; margin-left: auto; ">
         <ion-label position="floating">Tempo de experiência</ion-label>
-        <ion-select okText="Ok" cancelText="Sair" [(ngModel)]="usuario.formacao">
+        <ion-select okText="Ok" cancelText="Sair">
             <ion-select-option style="text-align: left;" *ngFor="let form of listTempoServico" [value]="form">{{form}}</ion-select-option>
         </ion-select>
     </ion-item>
 
 </ion-content>
-
+<ion-card-title>{{usuario.formacao?.descricao}}</ion-card-title>
 <ion-footer>
     <ion-toolbar>
         <ion-button (click)="updateUser() " size="small " expand="block ">Alterar Perfil</ion-button>

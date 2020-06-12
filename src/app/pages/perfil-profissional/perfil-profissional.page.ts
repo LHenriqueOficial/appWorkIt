@@ -14,13 +14,6 @@ import { Formacao } from './../../Model/formacao';
 })
 export class PerfilProfissionalPage implements OnInit {
 
-  public usuario: Usuario= {};
-  idUser: string;
-  id: any;
-  formacao:string;
-  titulo:string;
-  public usuarioSubscription: Subscription
-  loading: HTMLIonLoadingElement;
   public listFormacao: Array<string>=["Fundamental Incompleto", "Fundamental Completo", "Média Incompleto",
 "Médio Completo", "Superior Incompleto", "Superior Completo"];
   public listTempoServico: Array<string>=["Menos de 1 ano ", "2 anos","3 anos","4 anos","5 anos","6 anos","7 anos",
@@ -52,8 +45,17 @@ export class PerfilProfissionalPage implements OnInit {
   "Serviços públicos","Software","Supermercados","Suprimentos e equipamentos comerciais","Tabaco","Tecnologia da informação e serviços",
   "Terceirização e offshoring","Tradução e localização","Transporte marítimo","Transporte/Caminhões/Trens",
   "Treinamento e orientação profissional","Varejo","Veterinária","Vidro, cerâmica e concreto","Vinhos e destilados"];
-  msg: any;
 
+  public usuario: Usuario= {};
+  idUser: string;
+  id: any;
+  formacao:string;
+  titulo:string;
+  listForm: Formacao;
+  public usuarioSubscription: Subscription
+  loading: HTMLIonLoadingElement;
+  var: string;
+  
  
   constructor(
     private router:  Router,
@@ -86,16 +88,24 @@ export class PerfilProfissionalPage implements OnInit {
   loadUser() {
     this.usuarioSubscription = this.usuarioService.getUsuario(this.id).subscribe(data => {
       this.usuario = data;
-      this.usuario.formacao
+      this.listForm = data.formacao;
+      console.log(this.listForm.descricao);
+      console.log(this.listForm.titulo);
+      console.log(this.usuario.formacao.titulo);
+      
     });
   }
 
 
   
   async updateUser(){
+
+    this.usuario.formacao ={
+      descricao:this.formacao,
+      titulo: this.titulo
+    }
         
-    this.usuario.formacao.descricao = this.formacao;
-    this.usuario.formacao.titulo= this.titulo;
+   
     await this.presentLoading();
     this.usuarioService.updateUsuario(this.id, this.usuario).then(async () => {
     await this.loading.dismiss();

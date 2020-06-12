@@ -18,7 +18,7 @@ export class Usuario {
     email?: string;
     senha?: string;
     status?: boolean;
-    profissao?: Array<Profissao>;
+    profissao?: Profissao;
     formacao?: Formacao;
     contaUser?: ContaUser;
 }
