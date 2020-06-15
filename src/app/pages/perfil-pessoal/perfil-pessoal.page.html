@@ -22,11 +22,13 @@
             <ion-card-header>
                 <ion-avatar class="teste">
                     <img src="/assets/img/lauro.perfil.jpeg " />
+                    <ion-icon src="assets/icon/edit.svg "></ion-icon>
                 </ion-avatar>
+                <br>
+                <ion-card-title>{{usuario.nome}} {{usuario.sobrenome}}</ion-card-title>
             </ion-card-header>
-            <ion-card-content>
-                <ion-icon src="assets/icon/edit.svg "></ion-icon>
-                Alterar foto perfil
+            <ion-card-content *ngIf="usuario.idade || usuario.estado || usuario.pais">
+                {{usuario.idade}} Anos <br> {{usuario.localidade}}/{{usuario.estado}} / {{usuario.pais}} <br> {{usuario.email}}
             </ion-card-content>
         </ion-card>
     </ion-item>
@@ -42,6 +44,13 @@
     </ion-item>
 
     <ion-item style="text-align: start; margin-left: auto; ">
+        <ion-label position="floating">Idade:</ion-label>
+        <ion-input type="number " [(ngModel)]="usuario.idade" [(value)]="usuario.idade">
+        </ion-input>
+    </ion-item>
+
+
+    <ion-item style="text-align: start; margin-left: auto; ">
         <ion-label position="floating">Pais/Região:</ion-label>
         <ion-input type="tel" [(ngModel)]="usuario.pais" [(value)]="usuario.pais"></ion-input>
     </ion-item>
@@ -49,7 +58,7 @@
 
     <ion-item style="text-align: start; margin-left: auto; ">
         <ion-label position="floating">Localidades neste país/região:</ion-label>
-        <ion-input type="tel" [(ngModel)]="usuario.pais" [(value)]="usuario.pais"></ion-input>
+        <ion-input type="tel" [(ngModel)]="usuario.localidade" [(value)]="usuario.localidade"></ion-input>
     </ion-item>
 
 
@@ -65,7 +74,7 @@
     </ion-item>
     <ion-item style="text-align: start; margin-left: auto; ">
         <ion-label position="floating">E-mail:</ion-label>
-        <ion-input type="email" [(ngModel)]="usuario.email" [(value)]="usuario.email"></ion-input>
+        <ion-input type="email" [disabled]="true" [(ngModel)]="usuario.email" [(value)]="usuario.email"></ion-input>
     </ion-item>
     <ion-item style="text-align: start; margin-left: auto; ">
         <ion-label position="floating">senha:</ion-label>

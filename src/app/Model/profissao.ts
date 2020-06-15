@@ -1,13 +1,14 @@
 export class Profissao {
+
+descricao:string;
 areaAtuacao: string;
-profissao:string;
 tempoExperiencia:string;
 
 
 
 constructor( areaAtuacao: string, profissao: string, tempoExperencia:string){
     this.areaAtuacao= areaAtuacao;
-    this.profissao = profissao;
+    this.descricao = this.descricao;
     this.tempoExperiencia = tempoExperencia;
 }
 

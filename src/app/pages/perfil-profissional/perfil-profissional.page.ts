@@ -7,6 +7,8 @@ import { LoadingController, ToastController, AlertController } from '@ionic/angu
 import { Subscription } from 'rxjs';
 import { Usuario } from 'src/app/Model/usuario';
 import { Formacao } from './../../Model/formacao';
+import { AreaAtuacao } from './../../Model/area-atuacao';
+import { Profissao } from 'src/app/Model/profissao';
 @Component({
   selector: 'app-perfil-profissional',
   templateUrl: './perfil-profissional.page.html',
@@ -48,13 +50,17 @@ export class PerfilProfissionalPage implements OnInit {
 
   public usuario: Usuario= {};
   idUser: string;
-  id: any;
-  formacao:string;
-  titulo:string;
+  id: string;
   listForm: Formacao;
+  listProf:Profissao;
   public usuarioSubscription: Subscription
   loading: HTMLIonLoadingElement;
   var: string;
+  profissao: string;
+  areaAtuacao:string;
+  tempoExperi: string;
+  formacao:string;
+  titulo:string;
   
  
   constructor(
@@ -89,48 +95,53 @@ export class PerfilProfissionalPage implements OnInit {
     this.usuarioSubscription = this.usuarioService.getUsuario(this.id).subscribe(data => {
       this.usuario = data;
       this.listForm = data.formacao;
-      console.log(this.listForm.descricao);
-      console.log(this.listForm.titulo);
-      console.log(this.usuario.formacao.titulo);
+      this.formacao = this.listForm?.descricao;
+      this.titulo = this.listForm?.titulo;
+      this.listProf = data.profissao;
+      this.profissao = this.listProf?.descricao;
+      this.areaAtuacao = this.listProf?.areaAtuacao;
+      this.tempoExperi = this.listProf?.tempoExperiencia;
+     
+      
+      console.log(this.listForm?.descricao);
+      console.log(this.listForm?.titulo);
+      console.log(this.usuario?.formacao.titulo);
       
     });
   }
 
 
-  
+
   async updateUser(){
 
-    this.usuario.formacao ={
-      descricao:this.formacao,
-      titulo: this.titulo
-    }
-        
-   
-    await this.presentLoading();
-    this.usuarioService.updateUsuario(this.id, this.usuario).then(async () => {
-    await this.loading.dismiss();
-    const alert = await this.AlertCtrl.create({
-      header: 'Aviso',
-      subHeader: '',
-      message: 'Usuário Aletrado com Sucesso',
-      buttons: ['Ok']
-    });
-    await alert.present();
-    await this.ngOnInit();
-    
-  }).catch( async ()=>{
-    const alert = await this.AlertCtrl.create({
-      header:'Aviso',
-      subHeader:'',
-      message:'Erro ao Cadastrar Usuário',
-      buttons: ['Ok']
-    });
 
-    await alert.present();
-      
-    
-  })
-    
+var frankDocRef = this.db.collection("Usuarios").doc(this.id);
+ 
+ frankDocRef.update({
+  "profissao.descricao": this.profissao, "profissao.areaAtuacao": this.areaAtuacao, "profissao.tempoExperiencia": this.tempoExperi,
+
+   "formacao.descricao": this.formacao, "formacao.titulo": this.titulo,
+  
+}).then(async function() {   
+  
+  console.log("Document successfully updated!");
+}).catch(async function(error) {
+  
+  // The document probably doesn't exist.
+  console.error("Error updating document: ", error);
+ 
+})
+
+// this.usuarioService.updateUsuario(this.id, this.usuario).then(async () => {
+//     await this.loading.dismiss();
+//     const alert = await this.AlertCtrl.create({
+//       header: 'Aviso',
+//       subHeader: '',
+//       message: 'Usuário Aletrado com Sucesso',
+//       buttons: ['Ok']
+//     });
+//   });
+
 
 }
 

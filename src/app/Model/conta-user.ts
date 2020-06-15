@@ -2,10 +2,13 @@ export class ContaUser {
 
     numero: number;
     saldo: number;
+    uid:string;
 
-    constructor(numero: number, saldo:number = 0 ){
+    constructor(numero: number, saldo:number, uid: string ){
         this.numero = numero;
-        this.saldo = saldo;
+        this.saldo = 0;
+        this.uid = uid;
+
     }
 }
 

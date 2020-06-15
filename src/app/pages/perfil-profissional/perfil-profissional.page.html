@@ -23,11 +23,13 @@
             <ion-card-header>
                 <ion-avatar class="teste">
                     <img src="/assets/img/lauro.perfil.jpeg " />
+                    <ion-icon src="assets/icon/edit.svg "></ion-icon>
                 </ion-avatar>
+                <br>
+                <ion-card-title>{{profissao}}</ion-card-title>
             </ion-card-header>
-            <ion-card-content>
-                <ion-icon src="assets/icon/edit.svg "></ion-icon>
-                Alterar foto perfil
+            <ion-card-content *ngIf="titulo">
+                {{usuario.formacao?.descricao}} | {{titulo}} <br> {{tempoExperi}} Anos de Experiência
             </ion-card-content>
         </ion-card>
     </ion-item>
@@ -48,23 +50,22 @@
 
     <ion-item style="text-align: start; margin-left: auto; ">
         <ion-label position="floating">Area de atuação:</ion-label>
-        <ion-select okText="Ok" cancelText="Sair" [(ngModel)]="usuario.formacao">
+        <ion-select okText="Ok" cancelText="Sair" [(ngModel)]="areaAtuacao">
             <ion-select-option style="text-align: left;" *ngFor="let form of listAreaAtuacao" [value]="form">{{form}}</ion-select-option>
         </ion-select>
     </ion-item>
     <ion-item style="text-align: start; margin-left: auto; ">
         <ion-label position="floating">Profissição atual:</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" [(ngModel)]="profissao"></ion-input>
     </ion-item>
     <ion-item style="text-align: start; margin-left: auto; ">
         <ion-label position="floating">Tempo de experiência</ion-label>
-        <ion-select okText="Ok" cancelText="Sair">
-            <ion-select-option style="text-align: left;" *ngFor="let form of listTempoServico" [value]="form">{{form}}</ion-select-option>
+        <ion-select okText="Ok" cancelText="Sair" [(ngModel)]="tempoExperi">
+            <ion-select-option style="text-align: left;" *ngFor="let form of listTempoServico">{{form}}</ion-select-option>
         </ion-select>
     </ion-item>
 
 </ion-content>
-<ion-card-title>{{usuario.formacao?.descricao}}</ion-card-title>
 <ion-footer>
     <ion-toolbar>
         <ion-button (click)="updateUser() " size="small " expand="block ">Alterar Perfil</ion-button>

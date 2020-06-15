@@ -22,10 +22,10 @@ export class InicialPage implements OnInit {
     public db : AngularFirestore,
     private navCtrl: NavController,
     
-  ) { }
+  ) { this.carregaUser(); }
 
   ngOnInit() {
-    this.carregaUser();
+    // this.carregaUser();
   }
   showScreen(nomeDaPagina: string){
     this.navCtrl.navigateForward(nomeDaPagina);
@@ -52,6 +52,7 @@ carregaUser(){
              result.forEach(doc =>{
                this.usuario.push(doc.data())
                console.log(doc.id, ' => ' , doc.data())
+               this.nomeUser = doc.data().nome
                this.idColecao = doc.id
                console.log("id dacoleção do usuario " + this.idColecao)
              })
@@ -60,6 +61,7 @@ carregaUser(){
     }
     else{
       console.log("nao autenticado")
+      this.logOut();
     }
   })
 

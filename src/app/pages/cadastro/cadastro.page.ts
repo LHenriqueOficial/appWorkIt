@@ -26,7 +26,7 @@ export class CadastroPage implements OnInit {
     ) 
   
     {
-    this.usuario=new Usuario()
+    // this.usuario=new Usuario()
    }
 
   ngOnInit() {
@@ -37,14 +37,14 @@ export class CadastroPage implements OnInit {
       this.fbAuth.auth.createUserWithEmailAndPassword( this.usuario.email, this.usuario.senha).then
     (result=>{
       let users= this.db.collection("Usuarios") // esta recebendo a base de dados Usuarios do fireStore
-  
+      console.log("teste cadastro 1");
       users.add({
         nome:this.usuario.nome,
         email:this.usuario.email,
         senha:this.usuario.senha,
         userId:result.user.uid
       }).then( async ()=>{
-  
+  console.log("teste cadastro 2")
          const alert = await this.AlertCtrl.create({
            header:'Mensagen ',
            subHeader:'',
@@ -57,7 +57,7 @@ export class CadastroPage implements OnInit {
   this.fbAuth.auth.signInWithEmailAndPassword(this.usuario.email, this.usuario.senha).then(()=>{
   this.fbAuth.authState.subscribe(async user=>{
     if(user){
-      this.router.navigateByUrl('inicial');
+     
       const alert = await this.AlertCtrl.create({
         header:'mensagem',
         subHeader:'',
@@ -67,7 +67,7 @@ export class CadastroPage implements OnInit {
       await alert.present();
     }
   })
-    // this.showScreen('sreen-inicial');
+    this.router.navigateByUrl('inicial');
   });
   
       }).catch( async ()=>{
