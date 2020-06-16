@@ -12,7 +12,6 @@ export class UsuarioService {
 private usuarioCollection:  AngularFirestoreCollection<Usuario>;
 
   constructor(
-    private fbAut: AngularFireAuth,
     private db: AngularFirestore,
   )
    {
@@ -40,8 +39,8 @@ private usuarioCollection:  AngularFirestoreCollection<Usuario>;
      return this.usuarioCollection.add(usuario);
    }
 
-   updateUsuario(id: string, product: Usuario) {
-    return this.usuarioCollection.doc<Usuario>(id).update(product);
+   updateUsuario(id: string, user: Usuario) {
+    return this.usuarioCollection.doc<Usuario>(id).update(user);
   }
 
 }

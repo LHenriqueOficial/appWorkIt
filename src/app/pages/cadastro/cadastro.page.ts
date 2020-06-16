@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/Model/usuario';
 import { AlertController, NavController } from '@ionic/angular';
 import {AngularFireAuth} from 'angularfire2/auth'
 import {AngularFirestore} from 'angularfire2/firestore'
 import { async } from '@angular/core/testing';
+import { ContaUser } from './../../Model/conta-user';
 
 
 @Component({
@@ -15,7 +16,9 @@ import { async } from '@angular/core/testing';
 export class CadastroPage implements OnInit {
 
   public usuario: Usuario={};
+  public contaUser: ContaUser;
   loading: any;
+  nome:string;
   
   constructor( 
     public fbAuth: AngularFireAuth ,
@@ -32,6 +35,7 @@ export class CadastroPage implements OnInit {
   ngOnInit() {
 
   }
+
   cadastrarUsuario(){
     // metodo para criar usuario e enviar para fire base 
       this.fbAuth.auth.createUserWithEmailAndPassword( this.usuario.email, this.usuario.senha).then
@@ -42,22 +46,21 @@ export class CadastroPage implements OnInit {
         nome:this.usuario.nome,
         email:this.usuario.email,
         senha:this.usuario.senha,
-        userId:result.user.uid
+        userId:result.user.uid,
       }).then( async ()=>{
-  console.log("teste cadastro 2")
          const alert = await this.AlertCtrl.create({
            header:'Mensagen ',
            subHeader:'',
            message:'Usuário Cadastrado com Sucesso ',
            buttons: ['Ok']
          });
-  
          await alert.present();
+         
   /// autenticando o usuario apos autenticação 
   this.fbAuth.auth.signInWithEmailAndPassword(this.usuario.email, this.usuario.senha).then(()=>{
   this.fbAuth.authState.subscribe(async user=>{
+    
     if(user){
-     
       const alert = await this.AlertCtrl.create({
         header:'mensagem',
         subHeader:'',

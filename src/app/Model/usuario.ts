@@ -20,5 +20,5 @@ export class Usuario {
     status?: boolean;
     profissao?: Profissao;
     formacao?: Formacao;
-    contaUser?: ContaUser;
+    // contaUser?: ContaUser;
 }

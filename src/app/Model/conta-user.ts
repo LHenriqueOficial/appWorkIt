@@ -1,13 +1,22 @@
 export class ContaUser {
 
-    numero: number;
+    nome:string;
     saldo: number;
-    uid:string;
+    idConta:string;
+    bancoUser:string;
+    tipoConta: string;
+    agencia:number;
+    numeroConta:number;
 
-    constructor(numero: number, saldo:number, uid: string ){
-        this.numero = numero;
+    constructor( saldo:number, uid: string,nome:string,bancaUser:string,
+        tipoConta:string, agencia:number,numeroConta:number ){
+        this.nome = nome;    
         this.saldo = 0;
-        this.uid = uid;
+        this.idConta = uid;
+        this.bancoUser= bancaUser;
+        this.tipoConta= tipoConta;
+        this.agencia = agencia;
+        this.numeroConta = numeroConta;
 
     }
 }

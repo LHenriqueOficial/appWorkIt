@@ -112,12 +112,12 @@ export class PerfilProfissionalPage implements OnInit {
 
 
 
-  async updateUser(){
+async updateUser(){
 
 
-var frankDocRef = this.db.collection("Usuarios").doc(this.id);
+var user = this.db.collection("Usuarios").doc(this.id);
  
- frankDocRef.update({
+ user.update({
   "profissao.descricao": this.profissao, "profissao.areaAtuacao": this.areaAtuacao, "profissao.tempoExperiencia": this.tempoExperi,
 
    "formacao.descricao": this.formacao, "formacao.titulo": this.titulo,
@@ -127,21 +127,9 @@ var frankDocRef = this.db.collection("Usuarios").doc(this.id);
   console.log("Document successfully updated!");
 }).catch(async function(error) {
   
-  // The document probably doesn't exist.
   console.error("Error updating document: ", error);
  
 })
-
-// this.usuarioService.updateUsuario(this.id, this.usuario).then(async () => {
-//     await this.loading.dismiss();
-//     const alert = await this.AlertCtrl.create({
-//       header: 'Aviso',
-//       subHeader: '',
-//       message: 'Usuário Aletrado com Sucesso',
-//       buttons: ['Ok']
-//     });
-//   });
-
 
 }
 

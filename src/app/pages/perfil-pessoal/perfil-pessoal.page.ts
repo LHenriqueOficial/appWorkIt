@@ -45,9 +45,10 @@ export class PerfilPessoalPage implements OnInit {
 
   }
 
-  ngOnDestroy() {
-    this.usuarioSubscription.unsubscribe();
-  }
+  // ngOnDestroy() {
+  //   this.usuarioSubscription.unsubscribe();
+  // }
+
   logOut(){
     this.fbAuth.auth.signOut();
     this.router.navigateByUrl('login')

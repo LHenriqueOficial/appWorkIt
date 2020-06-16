@@ -14,7 +14,58 @@
     </ion-toolbar>
 </ion-header>
 
+
 <ion-content>
 
+    <ion-item lines="none">
+        <ion-card class="item-card">
+            <ion-card-header>
+                <ion-avatar class="teste">
+                    <img src="/assets/img/lauro.perfil.jpeg " />
+                    <ion-icon src="assets/icon/edit.svg "></ion-icon>
+                </ion-avatar>
+                <br>
+                <ion-card-title>{{usuario.nome}} {{usuario.sobrenome}}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content *ngIf="usuario.idade || usuario.estado || usuario.pais">
+                {{usuario.idade}} Anos <br> {{usuario.localidade}}/{{usuario.estado}} / {{usuario.pais}} <br> {{usuario.email}}
+            </ion-card-content>
+        </ion-card>
+    </ion-item>
+
+    <ion-item style="text-align: start; margin-left: auto; ">
+        <ion-label position="floating"><b>Banco:</b></ion-label>
+        <ion-select okText="Ok" cancelText="Sair" [(ngModel)]="usuario.estado">
+            <ion-select-option style="text-align: left;" *ngFor="let form of listBanco" [value]="form">{{form}}</ion-select-option>
+        </ion-select>
+    </ion-item>
+
+    <ion-item style="text-align: start; margin-left: auto; ">
+        <ion-label position="floating"><b>Tipo de Conta:</b></ion-label>
+        <ion-select okText="Ok" cancelText="Sair">
+            <ion-select-option style="text-align: left;" value="Conta Corrente">Conta Corrente</ion-select-option>
+            <ion-select-option style="text-align: left;" value="Conta Poupança">Conta Poupança</ion-select-option>
+        </ion-select>
+    </ion-item>
+
+    <ion-item style="text-align: start; margin-left: auto; ">
+        <ion-label position="floating">Agencia:</ion-label>
+        <ion-input type="number"></ion-input>
+    </ion-item>
+    <ion-item style="text-align: start; margin-left: auto; ">
+        <ion-label position="floating">Conta:</ion-label>
+        <ion-input type="number"></ion-input>
+    </ion-item>
+    <ion-item style="text-align: start; margin-left: auto; ">
+        <ion-label position="floating">Digito:</ion-label>
+        <ion-input type="number"></ion-input>
+    </ion-item>
 
 </ion-content>
+
+
+<ion-footer>
+    <ion-toolbar>
+        <ion-button (click)="updateUser() " size="small " expand="block ">Alterar Perfil</ion-button>
+    </ion-toolbar>
+</ion-footer>
