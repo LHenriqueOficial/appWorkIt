@@ -18,6 +18,7 @@ export class DadosFinanceirosPage implements OnInit {
   public usuario: Usuario= {};
   idUser: string;
   id: any;
+  teste :number=1;
   public usuarioSubscription: Subscription
   public contaUserSubscription: Subscription
   loading: any;
@@ -50,7 +51,7 @@ export class DadosFinanceirosPage implements OnInit {
 
   ngOnDestroy() {
     this.usuarioSubscription.unsubscribe();
-    this.contaUserSubscription.unsubscribe();
+    // this.contaUserSubscription.unsubscribe();
   }
  
   loadUser() {

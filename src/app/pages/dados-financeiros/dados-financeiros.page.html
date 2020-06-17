@@ -33,31 +33,68 @@
         </ion-card>
     </ion-item>
 
-    <ion-item style="text-align: start; margin-left: auto; ">
+
+    <ion-segment value="1" [(ngModel)]="teste" color="success">
+        <ion-segment-button value="1" layout="icon-bottom">
+            <ion-icon name="cash"></ion-icon>
+            <ion-label>Dados Recebimento</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="0" layout="icon-bottom">
+            <ion-icon name="card"></ion-icon>
+            <ion-label>Dados Pagamento</ion-label>
+        </ion-segment-button>
+    </ion-segment>
+
+    <ion-item style="text-align: start; margin-left: auto; " *ngIf="teste == 1">
         <ion-label position="floating"><b>Banco:</b></ion-label>
         <ion-select okText="Ok" cancelText="Sair" [(ngModel)]="usuario.estado">
             <ion-select-option style="text-align: left;" *ngFor="let form of listBanco" [value]="form">{{form}}</ion-select-option>
         </ion-select>
     </ion-item>
 
-    <ion-item style="text-align: start; margin-left: auto; ">
+    <ion-item style="text-align: start; margin-left: auto; " *ngIf="teste == 1">
         <ion-label position="floating"><b>Tipo de Conta:</b></ion-label>
         <ion-select okText="Ok" cancelText="Sair">
             <ion-select-option style="text-align: left;" value="Conta Corrente">Conta Corrente</ion-select-option>
-            <ion-select-option style="text-align: left;" value="Conta Poupança">Conta Poupança</ion-select-option>
         </ion-select>
     </ion-item>
 
-    <ion-item style="text-align: start; margin-left: auto; ">
+    <ion-item style="text-align: start; margin-left: auto; " *ngIf="teste == 1">
         <ion-label position="floating">Agencia:</ion-label>
         <ion-input type="number"></ion-input>
     </ion-item>
-    <ion-item style="text-align: start; margin-left: auto; ">
+    <ion-item style="text-align: start; margin-left: auto; " *ngIf="teste == 1">
         <ion-label position="floating">Conta:</ion-label>
         <ion-input type="number"></ion-input>
     </ion-item>
-    <ion-item style="text-align: start; margin-left: auto; ">
+    <ion-item style="text-align: start; margin-left: auto; " *ngIf="teste == 1">
         <ion-label position="floating">Digito:</ion-label>
+        <ion-input type="number"></ion-input>
+    </ion-item>
+
+
+    <ion-item style="text-align: start; margin-left: auto; " *ngIf="teste == 0">
+        <ion-label position="floating"><b>Numero do Cartão:</b></ion-label>
+        <ion-input type="number"></ion-input>
+    </ion-item>
+
+    <ion-item style="text-align: start; margin-left: auto; " *ngIf="teste == 0">
+        <ion-label position="floating"><b>Nome do Titular:</b></ion-label>
+        <ion-input type="text"></ion-input>
+
+    </ion-item>
+
+    <ion-item style="text-align: start; margin-left: auto; " *ngIf="teste == 0">
+        <ion-label position="stacked">Data Validade:</ion-label>
+        <ion-input type="date"></ion-input>
+    </ion-item>
+    <ion-item style="text-align: start; margin-left: auto; " *ngIf="teste == 0">
+        <ion-label position="floating">CPF:</ion-label>
+        <ion-input type="number"></ion-input>
+    </ion-item>
+
+    <ion-item style="text-align: start; margin-left: auto; " *ngIf="teste == 0">
+        <ion-label position="floating">Codigo Validação:</ion-label>
         <ion-input type="number"></ion-input>
     </ion-item>
 
