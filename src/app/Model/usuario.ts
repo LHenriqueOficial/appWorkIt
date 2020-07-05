@@ -1,6 +1,8 @@
 import { Profissao } from './profissao';
 import { ContaUser } from './conta-user';
 import { Formacao } from './formacao';
+import { CartaoPagamento } from './cartao-pagamento';
+import { ContaRecebimento } from './conta-recebimento';
 
 export class Usuario {
 
@@ -20,5 +22,7 @@ export class Usuario {
     status?: boolean;
     profissao?: Profissao;
     formacao?: Formacao;
+    CartaoPagamento?: CartaoPagamento;
+    ContaRecebimento?: ContaRecebimento;
     // contaUser?: ContaUser;
 }

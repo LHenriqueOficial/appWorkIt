@@ -7,6 +7,8 @@ import { LoadingController, ToastController, AlertController } from '@ionic/angu
 import { Usuario } from 'src/app/Model/usuario';
 import { Subscription } from 'rxjs';
 import { ContaUserService } from 'src/app/services/conta-user.service';
+import { ContaRecebimento } from './../../Model/conta-recebimento';
+import { CartaoPagamento } from './../../Model/cartao-pagamento';
 
 
 @Component({
@@ -16,9 +18,12 @@ import { ContaUserService } from 'src/app/services/conta-user.service';
 })
 export class DadosFinanceirosPage implements OnInit {
   public usuario: Usuario= {};
+  public recebimento: ContaRecebimento={};
+  public pagamento: CartaoPagamento={};
+
   idUser: string;
   id: any;
-  teste :number=1;
+  alteraTela :number=1;
   public usuarioSubscription: Subscription
   public contaUserSubscription: Subscription
   loading: any;
@@ -61,31 +66,65 @@ export class DadosFinanceirosPage implements OnInit {
   }
 
 
-  async updateConta(){
+  async updateDadosRecebimento(){
+    console.log("update dadosrecebimento")
+    console.log(this.recebimento.banco)
+    console.log(this.recebimento.agencia)
+    console.log(this.recebimento.numeroConta)
+    console.log(this.recebimento.tipoConta)
+    console.log(this.recebimento.digito)
     
-      await this.presentLoading();
-      this.usuarioService.updateUsuario(this.id, this.usuario).then(async () => {
-      await this.loading.dismiss();
-      const alert = await this.AlertCtrl.create({
-        header: 'Aviso',
-        subHeader: '',
-        message: 'Conta Aletrada com Sucesso',
-        buttons: ['Ok']
-      });
-      await alert.present();
-      await this.ngOnInit();
+    var user = await this.db.collection("Usuarios").doc(this.id);
+ 
+ user.update({
+   "contaRecebimento.nomeTitular": this.recebimento.nomeTitular,
+   "contaRecebimento.tipoConta": this.recebimento.tipoConta,
+  "contaRecebimento.banco": this.recebimento.banco, 
+  "contaRecebimento.agencia": this.recebimento.agencia, 
+  "contaRecebimento.numeroConta": this.recebimento.numeroConta,
+   "contaRecebimento.digito": this.recebimento.digito, 
 
-    }).catch( async ()=>{
-      const alert = await this.AlertCtrl.create({
-        header:'Aviso',
-        subHeader:'',
-        message:'Erro ao Cadastrar Conta',
-        buttons: ['Ok']
-      });
-      await alert.present();       
-    })   
+}).then(async function() {   
   
+  console.log("Document successfully updated!");
+}).catch(async function(error) {
+  
+  console.error("Error updating document: ", error);
+ 
+})
   }
+
+  async updateDadosPagamento(){
+    
+    console.log("update dadosPagamento")
+    console.log("update dadosrecebimento")
+    console.log(this.pagamento.nomeTitular)
+    console.log(this.pagamento.numeroCartao)
+    console.log(this.pagamento.dataValidade)
+    console.log(this.pagamento.cpf)
+    console.log(this.pagamento.codigoValidacao)
+
+    var user = await this.db.collection("Usuarios").doc(this.id);
+ 
+    user.update({
+     "cartaoPagamento.nomeTitular": this.pagamento.nomeTitular,
+     "cartaoPagamento.numeroCartao": this.pagamento.numeroCartao,
+     "cartaoPagamento.cpf": this.pagamento.cpf, 
+     "cartaoPagamento.dateValidade": this.pagamento.dataValidade, 
+     "cartaoPagamento.codigoValidacao": this.pagamento.codigoValidacao,
+     
+   
+   }).then(async function() {   
+     
+     console.log("Document successfully updated!");
+   }).catch(async function(error) {
+     
+     console.error("Error updating document: ", error);
+    
+   })
+    
+  }
+
 
   async presentLoading() {
     this.loading = await this.loadingCtrl.create({ message: 'Aguarde...' });

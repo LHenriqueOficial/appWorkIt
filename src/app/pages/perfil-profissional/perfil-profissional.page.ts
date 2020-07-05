@@ -7,7 +7,7 @@ import { LoadingController, ToastController, AlertController } from '@ionic/angu
 import { Subscription } from 'rxjs';
 import { Usuario } from 'src/app/Model/usuario';
 import { Formacao } from './../../Model/formacao';
-import { AreaAtuacao } from './../../Model/area-atuacao';
+// import { AreaAtuacao } from './../../Model/area-atuacao';
 import { Profissao } from 'src/app/Model/profissao';
 @Component({
   selector: 'app-perfil-profissional',
@@ -115,12 +115,14 @@ export class PerfilProfissionalPage implements OnInit {
 async updateUser(){
 
 
-var user = this.db.collection("Usuarios").doc(this.id);
+var user = await this.db.collection("Usuarios").doc(this.id);
  
  user.update({
-  "profissao.descricao": this.profissao, "profissao.areaAtuacao": this.areaAtuacao, "profissao.tempoExperiencia": this.tempoExperi,
-
-   "formacao.descricao": this.formacao, "formacao.titulo": this.titulo,
+  "profissao.descricao": this.profissao, 
+  "profissao.areaAtuacao": this.areaAtuacao, 
+  "profissao.tempoExperiencia": this.tempoExperi,
+   "formacao.descricao": this.formacao, 
+   "formacao.titulo": this.titulo,
   
 }).then(async function() {   
   
