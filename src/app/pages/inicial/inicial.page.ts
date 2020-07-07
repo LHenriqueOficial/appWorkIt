@@ -15,6 +15,8 @@ export class InicialPage implements OnInit {
   nomeUser: any;
   idColecao: string;
   usuario:any=[];
+  sobreNome: string;
+  profissao: any;
 
   constructor(
     private router:  Router,
@@ -22,10 +24,10 @@ export class InicialPage implements OnInit {
     public db : AngularFirestore,
     private navCtrl: NavController,
     
-  ) { this.carregaUser(); }
+  ) {  }
 
   ngOnInit() {
-    // this.carregaUser();
+    this.carregaUser();
   }
   showScreen(nomeDaPagina: string){
     this.navCtrl.navigateForward(nomeDaPagina);
@@ -52,7 +54,9 @@ carregaUser(){
              result.forEach(doc =>{
                this.usuario.push(doc.data())
                console.log(doc.id, ' => ' , doc.data())
-               this.nomeUser = doc.data().nome
+               this.nomeUser = doc.data().nome,
+               this.sobreNome = doc.data().sobrenome,
+               this.profissao = doc.data().profissao.descricao,
                this.idColecao = doc.id
                console.log("id dacoleção do usuario " + this.idColecao)
              })

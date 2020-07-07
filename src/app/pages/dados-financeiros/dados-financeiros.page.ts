@@ -9,6 +9,8 @@ import { Subscription } from 'rxjs';
 import { ContaUserService } from 'src/app/services/conta-user.service';
 import { ContaRecebimento } from './../../Model/conta-recebimento';
 import { CartaoPagamento } from './../../Model/cartao-pagamento';
+import { Formacao } from './../../Model/formacao';
+import { ContaUser } from './../../Model/conta-user';
 
 
 @Component({
@@ -19,7 +21,9 @@ import { CartaoPagamento } from './../../Model/cartao-pagamento';
 export class DadosFinanceirosPage implements OnInit {
   public usuario: Usuario= {};
   public recebimento: ContaRecebimento={};
+  public listRecebimento: ContaRecebimento;
   public pagamento: CartaoPagamento={};
+  public listPagamento:CartaoPagamento ;
 
   idUser: string;
   id: any;
@@ -62,27 +66,38 @@ export class DadosFinanceirosPage implements OnInit {
   loadUser() {
     this.usuarioSubscription = this.usuarioService.getUsuario(this.id).subscribe(data => {
       this.usuario = data;
+      this.listRecebimento =  data.contaRecebimento;
+      this.recebimento.nomeTitular = this.listRecebimento.nomeTitular;
+      this.recebimento.banco = this.listRecebimento.banco;
+      this.recebimento.tipoConta = this.listRecebimento.tipoConta;
+      this.recebimento.agencia = this.listRecebimento.agencia;
+      this.recebimento.numeroConta = this.listRecebimento.numeroConta;
+      this.recebimento.digito = this.listRecebimento.digito;
+      ///////////////////////////////
+      console.log(this.listRecebimento)
+      this.listPagamento = data.cartaoPagamento;
+      this.pagamento.nomeTitular = this.listPagamento.nomeTitular;
+      this.pagamento.cpf = this.listPagamento.cpf;
+      this.pagamento.numeroCartao = this.listPagamento.numeroCartao;
+      this.pagamento.dataValidade = this.listPagamento.dataValidade;
+      this.pagamento.codigoValidacao = this.listPagamento.codigoValidacao;
+      console.log(this.listPagamento);
+
     });
   }
 
 
   async updateDadosRecebimento(){
-    console.log("update dadosrecebimento")
-    console.log(this.recebimento.banco)
-    console.log(this.recebimento.agencia)
-    console.log(this.recebimento.numeroConta)
-    console.log(this.recebimento.tipoConta)
-    console.log(this.recebimento.digito)
     
     var user = await this.db.collection("Usuarios").doc(this.id);
  
  user.update({
-   "contaRecebimento.nomeTitular": this.recebimento.nomeTitular,
-   "contaRecebimento.tipoConta": this.recebimento.tipoConta,
+  "contaRecebimento.nomeTitular": this.recebimento.nomeTitular,
+  "contaRecebimento.tipoConta": this.recebimento.tipoConta,
   "contaRecebimento.banco": this.recebimento.banco, 
   "contaRecebimento.agencia": this.recebimento.agencia, 
   "contaRecebimento.numeroConta": this.recebimento.numeroConta,
-   "contaRecebimento.digito": this.recebimento.digito, 
+  "contaRecebimento.digito": this.recebimento.digito, 
 
 }).then(async function() {   
   
@@ -96,24 +111,15 @@ export class DadosFinanceirosPage implements OnInit {
 
   async updateDadosPagamento(){
     
-    console.log("update dadosPagamento")
-    console.log("update dadosrecebimento")
-    console.log(this.pagamento.nomeTitular)
-    console.log(this.pagamento.numeroCartao)
-    console.log(this.pagamento.dataValidade)
-    console.log(this.pagamento.cpf)
-    console.log(this.pagamento.codigoValidacao)
-
     var user = await this.db.collection("Usuarios").doc(this.id);
  
     user.update({
      "cartaoPagamento.nomeTitular": this.pagamento.nomeTitular,
      "cartaoPagamento.numeroCartao": this.pagamento.numeroCartao,
      "cartaoPagamento.cpf": this.pagamento.cpf, 
-     "cartaoPagamento.dateValidade": this.pagamento.dataValidade, 
+     "cartaoPagamento.dataValidade": this.pagamento.dataValidade, 
      "cartaoPagamento.codigoValidacao": this.pagamento.codigoValidacao,
      
-   
    }).then(async function() {   
      
      console.log("Document successfully updated!");

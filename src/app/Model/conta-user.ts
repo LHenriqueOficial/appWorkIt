@@ -1,15 +1,16 @@
+
 export class ContaUser {
 
-    nome:string;
-    saldo: number;
-    idConta:string;
+    nome?:string;
+    email?:string;
+    saldo?: number;
+    idConta?: string;
 
-    constructor( saldo:number, idConta: string,nome:string  ){
+    constructor( saldo:number=0, idConta: string,nome:string, email:string ){
         this.nome = nome;    
-        this.saldo = 0;
+        this.saldo = saldo;
         this.idConta = idConta;
-     
-
+        this.email = email;
     }
 }
 

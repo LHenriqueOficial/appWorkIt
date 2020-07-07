@@ -22,7 +22,7 @@ export class Usuario {
     status?: boolean;
     profissao?: Profissao;
     formacao?: Formacao;
-    CartaoPagamento?: CartaoPagamento;
-    ContaRecebimento?: ContaRecebimento;
+    cartaoPagamento?: CartaoPagamento;
+    contaRecebimento?: ContaRecebimento;
     // contaUser?: ContaUser;
 }

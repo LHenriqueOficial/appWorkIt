@@ -102,7 +102,7 @@ export class PerfilProfissionalPage implements OnInit {
       this.areaAtuacao = this.listProf?.areaAtuacao;
       this.tempoExperi = this.listProf?.tempoExperiencia;
      
-      
+      console.log(this.listForm)
       console.log(this.listForm?.descricao);
       console.log(this.listForm?.titulo);
       console.log(this.usuario?.formacao.titulo);
