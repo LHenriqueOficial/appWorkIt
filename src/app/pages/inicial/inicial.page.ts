@@ -3,7 +3,10 @@ import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Usuario } from 'src/app/Model/usuario';
-import { NavController } from '@ionic/angular';
+import { NavController, ModalController } from '@ionic/angular';
+import { PublicacaoPage } from './../../modals/publicacao/publicacao.page';
+import { async } from '@angular/core/testing';
+import { CardComponent } from './../../components/card/card.component';
 
 
 @Component({
@@ -23,6 +26,7 @@ export class InicialPage implements OnInit {
     public fbAuth: AngularFireAuth,
     public db : AngularFirestore,
     private navCtrl: NavController,
+    private modalCtrl: ModalController
     
   ) {  }
 
@@ -70,4 +74,22 @@ carregaUser(){
   })
 
 }
+
+  async showModal(){
+  const modal = await this.modalCtrl.create({
+    component:PublicacaoPage
+  })
+  modal.present();
+}
+async showCard(){
+  const card = await this.modalCtrl.create({
+    component:CardComponent,
+    cssClass: 'custom-modal'
+    
+    
+    
+  })
+  card.present();
+}
+
 }

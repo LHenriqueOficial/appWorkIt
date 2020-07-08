@@ -1,0 +1,38 @@
+<ion-card>
+    <ion-card-header>
+        <ion-card-title>Publicar</ion-card-title>
+    </ion-card-header>
+
+    <ion-label position="floating"><b>Tipo de Publicação:</b></ion-label>
+    <ion-select okText="Ok" cancelText="Sair" [(ngModel)]="tipoPublicacao">
+        <ion-select-option style="text-align: left;" value="oportunidade">Oportunidade</ion-select-option>
+        <ion-select-option style="text-align: left;" value="disponibilidade">Disponibilidade</ion-select-option>
+    </ion-select>
+
+    <ion-item>
+        <ion-label><b>Nome:</b> </ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-label><b>Area de Atuação:</b> </ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-label><b>Profissão:</b> </ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-label><b>Tempo Experiência:</b> </ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-label><b>Valor por hora:</b> </ion-label>
+    </ion-item>
+
+    <ion-textarea color="primary"><b>Descreva oque procura?</b> </ion-textarea>
+
+</ion-card>
+
+
+
+
+
+<ion-button (click)="fecharModal()" expand="block" fill="clear" shape="round">
+    fechar
+</ion-button>
