@@ -43,4 +43,8 @@ private usuarioCollection:  AngularFirestoreCollection<Usuario>;
     return this.usuarioCollection.doc<Usuario>(id).update(user);
   }
 
+  deleteUsuario(id: string) {
+    return this. usuarioCollection.doc(id).delete();
+  }
+
 }

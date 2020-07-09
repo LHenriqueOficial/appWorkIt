@@ -1,38 +1,53 @@
-<ion-card>
+<ion-card class="id">
     <ion-card-header>
         <ion-card-title>Publicar</ion-card-title>
     </ion-card-header>
+    <ion-content>
 
-    <ion-label position="floating"><b>Tipo de Publicação:</b></ion-label>
-    <ion-select okText="Ok" cancelText="Sair" [(ngModel)]="tipoPublicacao">
-        <ion-select-option style="text-align: left;" value="oportunidade">Oportunidade</ion-select-option>
-        <ion-select-option style="text-align: left;" value="disponibilidade">Disponibilidade</ion-select-option>
-    </ion-select>
+        <ion-infinite-scroll threshold="100px" id="infinite-scroll" fullscreen>
+            <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading more data...">
+                <ion-select okText="Ok" cancelText="Sair" placeholder="Tipo de Publicação:" [(ngModel)]="publicacao.tipoPublicacao">
+                    <ion-select-option style="text-align: left;" value="oportunidade">Oportunidade</ion-select-option>
+                    <ion-select-option style="text-align: left;" value="disponibilidade">Disponibilidade</ion-select-option>
+                </ion-select>
 
-    <ion-item>
-        <ion-label><b>Nome:</b> </ion-label>
-    </ion-item>
-    <ion-item>
-        <ion-label><b>Area de Atuação:</b> </ion-label>
-    </ion-item>
-    <ion-item>
-        <ion-label><b>Profissão:</b> </ion-label>
-    </ion-item>
-    <ion-item>
-        <ion-label><b>Tempo Experiência:</b> </ion-label>
-    </ion-item>
-    <ion-item>
-        <ion-label><b>Valor por hora:</b> </ion-label>
-    </ion-item>
+                <ion-item>
+                    <ion-label position="floating"><b>Nome:</b> </ion-label>
+                    <ion-input type="text" [(ngModel)]="publicacao.nomeUser" [(value)]="nomeUser"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating"><b>Area de Atuação:</b> </ion-label>
+                    <ion-input type="text" [(ngModel)]="publicacao.areaAtuacao" [(value)]="areaAtuacao"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating"><b>Profissão:</b> </ion-label>
+                    <ion-input type="text" [(ngModel)]="publicacao.profissao" [(value)]="profissao"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label position="floating"><b>Tempo Experiência:</b> </ion-label>
+                    <ion-input type="text" [(ngModel)]="publicacao.tempoExperiencia" [(value)]="experiencia"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-icon slot="start" name="cash" color="success"></ion-icon>
+                    <ion-label><b>Valor por hora:</b> </ion-label>
+                    <ion-input type="text" [(ngModel)]="publicacao.valorHora"></ion-input>
+                </ion-item>
 
-    <ion-textarea color="primary"><b>Descreva oque procura?</b> </ion-textarea>
+                <ion-textarea color="primary" [(ngModel)]="publicacao.descricao"><b>Descreva oque procura./ Ou suas habilidades.</b> </ion-textarea>
+            </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+
+    </ion-content>
+
 
 </ion-card>
 
 
 
+<ion-item>
+    <ion-button (click)="fecharModal()" size="small" color="secondary">fechar</ion-button>
+    <ion-item *ngIf="publicacao.valorHora != null">
+        <ion-button slot="end" (click)="teste()" size="small" color="tertiary">teste</ion-button>
+    </ion-item>
 
-
-<ion-button (click)="fecharModal()" expand="block" fill="clear" shape="round">
-    fechar
-</ion-button>
+</ion-item>

@@ -41,4 +41,9 @@ export class ContaUserService {
    return this.contaCollection.doc<ContaUser>(id).update(conta);
  }
 
+ deleteConta(id: string) {
+  return this. contaCollection.doc(id).delete();
+}
+
+
 }
