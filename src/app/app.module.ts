@@ -26,9 +26,7 @@ var firebaseConfig = {
   appId: "1:888973686558:web:84e881a9b19236d410fb0f",
   measurementId: "G-4FSPYM3123"
 };
-// // Initialize Firebase
-// firebase.initializeApp(firebaseConfig);
-// firebase.analytics();
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,8 +35,6 @@ var firebaseConfig = {
 BrowserModule,AngularFirestoreModule, AngularFireAuthModule, 
   AngularFireModule.initializeApp(firebaseConfig),
     IonicModule.forRoot(), 
-    // SimpleMaskDirective,
-    // SimpleMaskPipe,
     AppRoutingModule
   ],
   providers: [

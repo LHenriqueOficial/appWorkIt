@@ -74,6 +74,19 @@ const routes: Routes = [
     path: 'publicacao',
     loadChildren: () => import('./modals/publicacao/publicacao.module').then( m => m.PublicacaoPageModule)
   },
+  {
+    path: 'atualizacao',
+    loadChildren: () => import('./pages/atualizacao/atualizacao.module').then( m => m.AtualizacaoPageModule)
+  },
+  {
+    path: 'mensagens',
+    loadChildren: () => import('./pages/mensagens/mensagens.module').then( m => m.MensagensPageModule)
+  },
+  {
+    path: 'mensagens/:id',
+    loadChildren: () => import('./pages/mensagens/mensagens.module').then( m => m.MensagensPageModule)
+  },
+ 
  
 ];
 

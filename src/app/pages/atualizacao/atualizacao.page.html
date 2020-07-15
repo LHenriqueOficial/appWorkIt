@@ -1,0 +1,51 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button>
+                <ion-icon name="arrow-back-outline"></ion-icon>
+            </ion-back-button>
+        </ion-buttons>
+        <ion-avatar slot="end" size="small" color="primary">
+            <ion-icon class="icon-card" src="assets/icon/bancario2.svg"></ion-icon>
+        </ion-avatar>
+        <ion-title>
+            <b>Atualizaçãoes</b>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+
+    <ion-item lines="none" *ngFor=" let public of publicacao">
+        <ion-card class="item-card">
+            <ion-card-header>
+                <ion-avatar class="teste">
+                    <img src="/assets/img/lauro.perfil.jpeg " />
+                    <!-- <ion-icon src="assets/icon/edit.svg "></ion-icon> -->
+                </ion-avatar>
+                <br>
+                <ion-card-title>{{public.nomeUser}}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+
+                Area de Atuação: {{public.areaAtuacao}} <br> Profissão: {{public.profissao}} <br> {{public.tempoExperiencia}} Anos de Experiência
+                <br>
+                <!-- 
+                <br><br>
+                <ion-textarea style="border-radius: 5px; border-color: black;border-style: solid;">{{public.descricao}}</ion-textarea>
+                Publicado em: {{public.dataPublicacao | date:'dd-MM-yyyy HH:mm' }} -->
+
+                <ion-tab-button (click)="showDetalhesPublicacao(public.userId)">
+                    <ion-icon name="eye"></ion-icon>
+                    <ion-label><b>Visualizar</b> </ion-label>
+                </ion-tab-button>
+
+
+            </ion-card-content>
+        </ion-card>
+    </ion-item>
+
+
+</ion-content>

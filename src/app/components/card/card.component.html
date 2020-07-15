@@ -30,7 +30,7 @@
                 <ion-item>
                     <ion-icon slot="start" name="cash" color="success"></ion-icon>
                     <ion-label><b>Valor por hora:</b> </ion-label>
-                    <ion-input type="text" [(ngModel)]="publicacao.valorHora"></ion-input>
+                    <ion-input type="number" [(ngModel)]="publicacao.valorHora"></ion-input>
                 </ion-item>
 
                 <ion-textarea color="primary" [(ngModel)]="publicacao.descricao"><b>Descreva oque procura./ Ou suas habilidades.</b> </ion-textarea>
@@ -47,7 +47,7 @@
 <ion-item>
     <ion-button (click)="fecharModal()" size="small" color="secondary">fechar</ion-button>
     <ion-item *ngIf="publicacao.valorHora != null">
-        <ion-button slot="end" (click)="teste()" size="small" color="tertiary">teste</ion-button>
+        <ion-button slot="end" (click)="salvaPublicacao()" size="small" color="tertiary">Salva Publicação</ion-button>
     </ion-item>
 
 </ion-item>

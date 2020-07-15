@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button>
+                <ion-icon name="arrow-back-outline"></ion-icon>
+            </ion-back-button>
+        </ion-buttons>
+        <!-- <ion-avatar slot="end">
+          <ion-icon class="icon-card" src="assets/icon/perfil-pessoal.svg"></ion-icon>
+      </ion-avatar> -->
+        <ion-title>
+            <b>Mensagens</b>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <ion-item no-lines>
+            <ion-input type="text" [(ngModel)]="textoMensagem" (Keyup.enter)="PostarMensagem(textoMensagem); textoMensagem=''"></ion-input>
+            <!-- <ion-button (click)="PostarMensagem(textoMensagem); textoMensagem=''" expand="block" fill="clear" shape="round"> -->
+            <ion-icon name="send" (click)="PostarMensagem(textoMensagem); textoMensagem=''"></ion-icon>
+            <!-- </ion-button> -->
+        </ion-item>
+    </ion-toolbar>
+</ion-footer>

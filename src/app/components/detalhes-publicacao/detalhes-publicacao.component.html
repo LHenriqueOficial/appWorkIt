@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>{{public.tipoPublicacao}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-item>
+        <ion-label position="floating"><b>Nome:</b> </ion-label>
+        <ion-input type="text" [(ngModel)]="public.nomeUser" [(value)]="public.nomeUser"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating"><b>Area de Atuação:</b> </ion-label>
+        <ion-input type="text" [(ngModel)]="public.areaAtuacao" [(value)]="public.areaAtuacao"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating"><b>Profissão:</b> </ion-label>
+        <ion-input type="text" [(ngModel)]="public.profissao" [(value)]="public.profissao"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating"><b>Tempo Experiência:</b> </ion-label>
+        <ion-input type="text" [(value)]="public.tempoExperiencia"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-icon slot="start" name="cash" color="success"></ion-icon>
+        <ion-label><b>Valor por hora:</b> </ion-label>
+        <ion-input type="number" [(value)]="public.valorHora"></ion-input>
+    </ion-item>
+
+    <ion-textarea color="primary" [(value)]="public.descricao"><b>Descricao da {{public.tipoPublicacao}}.</b> </ion-textarea>
+
+
+</ion-content>
+
+
+
+
+<ion-item>
+    <ion-button (click)="fecharModal()" size="small" color="secondary">fechar</ion-button>
+    <ion-item>
+        <ion-button slot="end" (click)="rota(public.userId)" size="small" color="tertiary">Entrar em contato</ion-button>
+    </ion-item>
+
+</ion-item>

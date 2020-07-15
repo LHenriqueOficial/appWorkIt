@@ -39,7 +39,6 @@ export class InicialPage implements OnInit {
 
   rota(){
     this.router.navigate(['/edit-perfil', this.idColecao])
-  
   }
 
   logOut(){
@@ -85,9 +84,7 @@ async showCard(){
   const card = await this.modalCtrl.create({
     component:CardComponent,
     cssClass: 'custom-modal'
-    
-    
-    
+  
   })
   card.present();
 }
