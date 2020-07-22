@@ -86,6 +86,10 @@ const routes: Routes = [
     path: 'mensagens/:id',
     loadChildren: () => import('./pages/mensagens/mensagens.module').then( m => m.MensagensPageModule)
   },
+  {
+    path: 'painel-usuario',
+    loadChildren: () => import('./pages/painel-usuario/painel-usuario.module').then( m => m.PainelUsuarioPageModule)
+  },
  
  
 ];

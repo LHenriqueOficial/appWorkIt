@@ -57,7 +57,7 @@ this.listarMensagens();
   }
   listarMensagens(){
     this.lista = this.db.collection<Mensagens>("Mensagens" , ref =>{
-      return ref
+      return ref.limit(100).orderBy("data")
     }).valueChanges()/// faz a consulta ser dinamica toda vez que alterar a base de dados altera a view
     this.lista.subscribe(res =>
       {
@@ -83,7 +83,7 @@ PostarMensagem(){
 
     this.mensagem.de = this.usuarioDe
     this.mensagem.para = this.usuarioPara
-    this.mensagem.data = new Date();
+    this.mensagem.data = new Date().getTime();
 
     let mensagens =  this.db.collection("Mensagens")
     mensagens.add({

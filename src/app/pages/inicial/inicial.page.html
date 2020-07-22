@@ -27,11 +27,11 @@
         </ion-tab-button>
         <ion-tab-button (click)="showCard()">
             <ion-icon name="cloud-upload"></ion-icon>
-            <ion-label>Publicar Oportunidade</ion-label>
+            <ion-label>Publicar</ion-label>
         </ion-tab-button>
-        <ion-tab-button (click)="logOut()">
-            <ion-icon class="icon-card" src="assets/icon/exit.svg"></ion-icon>
-            <ion-label>Sair</ion-label>
+        <ion-tab-button (click)="showScreen('painel-usuario')">
+            <ion-icon class="icon-card" name="terminal"></ion-icon>
+            <ion-label>Painel</ion-label>
         </ion-tab-button>
         <ion-tab-button (click)="showScreen('mensagens')">
             <ion-icon name="mail"></ion-icon>

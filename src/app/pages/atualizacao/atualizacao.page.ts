@@ -5,6 +5,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { CardComponent } from 'src/app/components/card/card.component';
 import { ModalController } from '@ionic/angular';
 import { DetalhesPublicacaoComponent } from './../../components/detalhes-publicacao/detalhes-publicacao.component';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'app-atualizacao',
@@ -15,11 +16,14 @@ export class AtualizacaoPage implements OnInit {
   public publicacao = new Array<Publicacao>();
   private publicacaoSubscription: Subscription
   idPublicacao: string;
+  userId: string;
 
 
   constructor(
     private db: AngularFirestore,
-    private  modalCtrl: ModalController
+    private  modalCtrl: ModalController,
+    public fbAuth: AngularFireAuth,
+
   ) { }
 
   ngOnInit() {
@@ -38,6 +42,12 @@ export class AtualizacaoPage implements OnInit {
         console.log("id publicação " + this.idPublicacao)  
       });
     })
+
+    this.fbAuth.authState.subscribe(user=>{
+      if (user)
+      {
+        this.userId = user.uid;
+      }})
   }
 
 

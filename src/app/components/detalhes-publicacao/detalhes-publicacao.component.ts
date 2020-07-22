@@ -7,6 +7,8 @@ import { Publicacao } from './../../Model/publicacao';
 import { Subscription } from 'rxjs';
 import { AreaAtuacao } from './../../Model/area-atuacao';
 import { Router } from '@angular/router';
+import { PainelUsuario } from './../../Model/painel-usuario';
+import { PainelUsuarioService } from './../../services/painel-usuario.service';
 
 @Component({
   selector: 'app-detalhes-publicacao',
@@ -18,6 +20,7 @@ export class DetalhesPublicacaoComponent implements OnInit {
   idUser: any;
   public publicacao = new Array<Publicacao>();
   public:Publicacao ={};
+  userPainel: PainelUsuario={};
 
   private publicacaoSubscription: Subscription;
   usuario: any;
@@ -30,6 +33,7 @@ export class DetalhesPublicacaoComponent implements OnInit {
     private fbAuth: AngularFireAuth,
     private db: AngularFirestore,
     private servicePublicacao: PublicacaoService,
+    private servicePainelUser: PainelUsuarioService,
     public navParams: NavParams,
     private router:  Router,
   ) {
@@ -62,12 +66,39 @@ export class DetalhesPublicacaoComponent implements OnInit {
        this.public.tipoPublicacao= doc.data().tipoPublicacao,
        this.public.valorHora= doc.data().valorHora,
        this.public.dataPublicacao= doc.data().dataPublicacao,
-       this.public.userId = doc.data().userId,
-       console.log("valor hora" + this.public.valorHora)
-       console.log("id publicação " + this.public.userId)  
+       this.public.userId = doc.data().userId 
      });
    })
+
       
+  }
+
+  addUserPainel(){
+    this.fbAuth.authState.subscribe(user=>{
+      this.userPainel.idUsuariologado = user.uid
+    
+    })
+    this.userPainel.nomeUser= this.public.nomeUser,
+    this.userPainel.areaAtuacao = this.public.areaAtuacao,
+    this.userPainel.profissao = this.public.profissao,
+    this.userPainel.tempoExperiencia = this.public.tempoExperiencia,
+    this.userPainel.descricao = this.public.descricao,
+    this.userPainel.tipoPublicacao = this.public.tipoPublicacao,
+    this.userPainel.valorHora =this.public.valorHora,
+    this.userPainel.dataPublicacao = this.public.dataPublicacao,
+    this.userPainel.userId = this.public.userId,
+
+    this.servicePainelUser.addPainelUser(this.userPainel).then(async function() {   
+  
+      console.log("Usuario adcionado ao Painel com sucesso");
+    }).catch(async function(error) {
+      
+      console.error("Erro ao adcionar ao Painel : ", error);
+    
+    })
+
+    this.modalCtrl.dismiss();
+   
   }
 
   rota(id:string){

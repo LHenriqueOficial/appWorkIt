@@ -8,6 +8,7 @@ import { Usuario } from './Model/usuario';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { ContaUser } from './Model/conta-user';
 import { resourceUsage } from 'process';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -63,6 +64,7 @@ export class AppComponent implements OnInit {
     private statusBar: StatusBar,
     public fbAuth: AngularFireAuth,
     public db: AngularFirestore,
+    private router:  Router,
   ) {
     this.initializeApp();
   }
@@ -113,6 +115,12 @@ export class AppComponent implements OnInit {
     
     })
   
+  }
+
+
+  logOut(){
+    this.fbAuth.auth.signOut();
+    this.router.navigateByUrl('login')
   }
 
 }

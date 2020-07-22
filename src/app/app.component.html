@@ -14,11 +14,18 @@
 
 
 
-                    <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-                        <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
+                    <!-- <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index"> -->
+                    <ion-menu-toggle auto-hide="false">
+
+                        <ion-item (click)="logOut()">
+                            <ion-icon slot="start" color="danger" class="icon-card" src="assets/icon/exit.svg"></ion-icon>
+                            <label> <b> Sair </b></label>
+                        </ion-item>
+
+                        <!-- <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
                             <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
                             <ion-label>{{ p.title }}</ion-label>
-                        </ion-item>
+                        </ion-item> -->
                     </ion-menu-toggle>
                 </ion-list>
 

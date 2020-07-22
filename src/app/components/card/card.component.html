@@ -1,53 +1,85 @@
-<ion-card class="id">
-    <ion-card-header>
-        <ion-card-title>Publicar</ion-card-title>
-    </ion-card-header>
-    <ion-content>
+<ion-header>
+    <ion-toolbar>
+        <ion-icon class="icon-card" name="close" (click)="fecharModal()"></ion-icon>
+        <ion-icon *ngIf="publicacao.valorHora != null" class="icon-card" slot="end" name="cloud-upload" (click)="salvaPublicacao()"></ion-icon>
+        <ion-title>Publicar</ion-title>
+    </ion-toolbar>
+</ion-header>
 
-        <ion-infinite-scroll threshold="100px" id="infinite-scroll" fullscreen>
-            <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading more data...">
-                <ion-select okText="Ok" cancelText="Sair" placeholder="Tipo de Publicação:" [(ngModel)]="publicacao.tipoPublicacao">
-                    <ion-select-option style="text-align: left;" value="oportunidade">Oportunidade</ion-select-option>
-                    <ion-select-option style="text-align: left;" value="disponibilidade">Disponibilidade</ion-select-option>
-                </ion-select>
+<ion-content>
 
-                <ion-item>
-                    <ion-label position="floating"><b>Nome:</b> </ion-label>
-                    <ion-input type="text" [(ngModel)]="publicacao.nomeUser" [(value)]="nomeUser"></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-label position="floating"><b>Area de Atuação:</b> </ion-label>
-                    <ion-input type="text" [(ngModel)]="publicacao.areaAtuacao" [(value)]="areaAtuacao"></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-label position="floating"><b>Profissão:</b> </ion-label>
-                    <ion-input type="text" [(ngModel)]="publicacao.profissao" [(value)]="profissao"></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-label position="floating"><b>Tempo Experiência:</b> </ion-label>
-                    <ion-input type="text" [(ngModel)]="publicacao.tempoExperiencia" [(value)]="experiencia"></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-icon slot="start" name="cash" color="success"></ion-icon>
-                    <ion-label><b>Valor por hora:</b> </ion-label>
-                    <ion-input type="number" [(ngModel)]="publicacao.valorHora"></ion-input>
-                </ion-item>
+    <ion-infinite-scroll threshold="100px" id="infinite-scroll" fullscreen>
+        <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading more data...">
+            <ion-select okText="Ok" cancelText="Sair" placeholder="Tipo de Publicação:" [(ngModel)]="publicacao.tipoPublicacao">
+                <ion-select-option style="text-align: left;" value="oportunidade">Oportunidade</ion-select-option>
+                <ion-select-option style="text-align: left;" value="disponibilidade">Disponibilidade</ion-select-option>
+            </ion-select>
 
-                <ion-textarea color="primary" [(ngModel)]="publicacao.descricao"><b>Descreva oque procura./ Ou suas habilidades.</b> </ion-textarea>
-            </ion-infinite-scroll-content>
-        </ion-infinite-scroll>
+            <ion-item>
+                <ion-label position="floating"><b>Nome:</b> </ion-label>
+                <ion-input type="text" [(ngModel)]="publicacao.nomeUser" [(value)]="nomeUser"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating"><b>Area de Atuação:</b> </ion-label>
+                <ion-input type="text" [(ngModel)]="publicacao.areaAtuacao" [(value)]="areaAtuacao"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating"><b>Profissão:</b> </ion-label>
+                <ion-input type="text" [(ngModel)]="publicacao.profissao" [(value)]="profissao"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating"><b>Tempo Experiência:</b> </ion-label>
+                <ion-input type="text" [(ngModel)]="publicacao.tempoExperiencia" [(value)]="experiencia"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-icon slot="start" name="cash" color="success"></ion-icon>
+                <ion-label><b>Valor por hora:</b> </ion-label>
+                <ion-input type="number" [(ngModel)]="publicacao.valorHora"></ion-input>
+            </ion-item>
 
-    </ion-content>
+            <ion-textarea color="primary" [(ngModel)]="publicacao.descricao"><b>Descreva oque procura./ Ou suas habilidades.</b> </ion-textarea>
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 
-
-</ion-card>
-
+</ion-content>
 
 
+<ion-footer>
+    <ion-tabs>
+        <ion-tab-bar slot="bottom">
+            <ion-tab-button (click)="salvaPublicacao()">
+                <ion-icon class="save" name="send"></ion-icon>
+                <ion-label color="dark"><b>Enviar Mensagen</b> </ion-label>
+            </ion-tab-button>
+            <br>
+
+        </ion-tab-bar>
+    </ion-tabs>
+</ion-footer>
+
+<ion-footer>
+    <ion-tabs>
+        <ion-tab-bar slot="bottom">
+            <ion-tab-button (click)="rota(public.userId)">
+                <ion-icon class="icon-mensagem" name="send"></ion-icon>
+                <ion-label color="dark"><b>Enviar Mensagen</b> </ion-label>
+            </ion-tab-button>
+            <ion-tab-button (click)="addUserPainel()">
+                <ion-icon class="icon-mensagem" name="terminal"></ion-icon>
+                <ion-label color="dark"><b> Add ao Painel</b></ion-label>
+            </ion-tab-button>
+            <br>
+
+        </ion-tab-bar>
+    </ion-tabs>
+</ion-footer>
+
+
+<!-- 
 <ion-item>
     <ion-button (click)="fecharModal()" size="small" color="secondary">fechar</ion-button>
     <ion-item *ngIf="publicacao.valorHora != null">
         <ion-button slot="end" (click)="salvaPublicacao()" size="small" color="tertiary">Salva Publicação</ion-button>
     </ion-item>
 
-</ion-item>
+</ion-item> -->

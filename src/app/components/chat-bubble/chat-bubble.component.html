@@ -1,0 +1,10 @@
+<div class="chatBubble">
+    <!-- <img class="profile-pic {{posicao}}" src="/assets/img/lauro.perfil.jpeg"> -->
+    <div class="chat-bubble {{posicao}}">
+        <div class="message">{{msg.texto}}</div>
+        <div class="message-detail">
+            <!-- <span style="font-weight:bold;">{{msg.nome}} </span>, -->
+            <span>{{msg.data | date:'dd-MM-yyyy HH:mm' }}</span>
+        </div>
+    </div>
+</div>

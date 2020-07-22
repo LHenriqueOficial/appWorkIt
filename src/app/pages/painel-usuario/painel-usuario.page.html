@@ -9,7 +9,7 @@
             <ion-icon class="icon-card" src="assets/icon/bancario2.svg"></ion-icon>
         </ion-avatar>
         <ion-title>
-            <b>Atualizaçãoes</b>
+            <b>Painel</b>
         </ion-title>
     </ion-toolbar>
 </ion-header>
@@ -18,7 +18,7 @@
 <ion-content>
 
 
-    <ion-item lines="none" *ngFor=" let public of publicacao">
+    <ion-item lines="none" *ngFor=" let public of userPainel">
         <ion-card class="item-card" *ngIf="userId != public.userId">
             <ion-card-header>
                 <ion-avatar class="teste">
@@ -30,12 +30,18 @@
             </ion-card-header>
             <ion-card-content>
 
-                Area de Atuação: {{public.areaAtuacao}} <br> Profissão: {{public.profissao}} <br> {{public.tempoExperiencia}} Anos de Experiência
+                <b>Area de Atuação:</b> {{public.areaAtuacao}} <br> <b>Profissão:</b> {{public.profissao}} <br> {{public.tempoExperiencia}} Anos de Experiência
                 <br>
+                <ion-item>
+                    <ion-icon slot="start" name="cash" color="success"></ion-icon>
+                    <ion-label><b>Valor por hora:</b> </ion-label>
+                    <ion-label>{{public.valorHora}} </ion-label>
+                </ion-item>
+
                 <!-- 
-                <br><br>
-                <ion-textarea style="border-radius: 5px; border-color: black;border-style: solid;">{{public.descricao}}</ion-textarea>
-                Publicado em: {{public.dataPublicacao | date:'dd-MM-yyyy HH:mm' }} -->
+              <br><br>
+              <ion-textarea style="border-radius: 5px; border-color: black;border-style: solid;">{{public.descricao}}</ion-textarea>
+              Publicado em: {{public.dataPublicacao | date:'dd-MM-yyyy HH:mm' }} -->
 
                 <ion-tab-button (click)="showDetalhesPublicacao(public.userId)">
                     <ion-icon name="eye"></ion-icon>
@@ -44,7 +50,10 @@
 
 
             </ion-card-content>
+
         </ion-card>
+
+
     </ion-item>
 
 

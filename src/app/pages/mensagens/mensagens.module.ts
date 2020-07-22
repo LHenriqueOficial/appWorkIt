@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { MensagensPageRoutingModule } from './mensagens-routing.module';
 
 import { MensagensPage } from './mensagens.page';
+import { ChatBubbleComponent } from './../../components/chat-bubble/chat-bubble.component';
+
 
 @NgModule({
   imports: [
-    CommonModule,
+  CommonModule,
     FormsModule,
     IonicModule,
     MensagensPageRoutingModule
   ],
-  declarations: [MensagensPage]
+  declarations: [MensagensPage, ChatBubbleComponent]
 })
 export class MensagensPageModule {}
