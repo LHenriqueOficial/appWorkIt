@@ -24,6 +24,8 @@ export class DetalhesPublicacaoComponent implements OnInit {
 
   private publicacaoSubscription: Subscription;
   usuario: any;
+  userId: string;
+  valor: boolean = true;
  
 
   constructor(
@@ -41,7 +43,6 @@ export class DetalhesPublicacaoComponent implements OnInit {
     this.idUser= navParams.get('id')
     console.log(this.idUser);
     
- 
    }
 
   ngOnInit() {
@@ -66,18 +67,37 @@ export class DetalhesPublicacaoComponent implements OnInit {
        this.public.tipoPublicacao= doc.data().tipoPublicacao,
        this.public.valorHora= doc.data().valorHora,
        this.public.dataPublicacao= doc.data().dataPublicacao,
-       this.public.userId = doc.data().userId 
+       this.public.userId = doc.data().userId,
+       this.idPublicacao = doc.id
      });
-   })
 
+     this.fbAuth.authState.subscribe(user=>{
+      if (user)
+      {
+        this.userId = user.uid;
+        if(this.userId == this.public.userId){
+          console.log("id igual ")
+          this.valor= true
+          console.log(this.valor)
+
+        }else{
+          this.valor= false
+          console.log(this.valor)
+        }
+      }
+   
+    })
+  
+   })
       
   }
 
   addUserPainel(){
-    this.fbAuth.authState.subscribe(user=>{
-      this.userPainel.idUsuariologado = user.uid
+    // this.fbAuth.authState.subscribe(user=>{
+    //   this.userPainel.idUsuariologado = user.uid
     
-    })
+    // })
+    this.userPainel.idUsuariologado = this.userId
     this.userPainel.nomeUser= this.public.nomeUser,
     this.userPainel.areaAtuacao = this.public.areaAtuacao,
     this.userPainel.profissao = this.public.profissao,
@@ -87,6 +107,7 @@ export class DetalhesPublicacaoComponent implements OnInit {
     this.userPainel.valorHora =this.public.valorHora,
     this.userPainel.dataPublicacao = this.public.dataPublicacao,
     this.userPainel.userId = this.public.userId,
+    this.userPainel.idPublicacao = this.idPublicacao;
 
     this.servicePainelUser.addPainelUser(this.userPainel).then(async function() {   
   

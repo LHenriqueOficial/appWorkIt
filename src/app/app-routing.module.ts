@@ -90,6 +90,14 @@ const routes: Routes = [
     path: 'painel-usuario',
     loadChildren: () => import('./pages/painel-usuario/painel-usuario.module').then( m => m.PainelUsuarioPageModule)
   },
+  {
+    path: 'detalhes-painel',
+    loadChildren: () => import('./pages/detalhes-painel/detalhes-painel.module').then( m => m.DetalhesPainelPageModule)
+  },
+  {
+    path: 'detalhes-painel/:id',
+    loadChildren: () => import('./pages/detalhes-painel/detalhes-painel.module').then( m => m.DetalhesPainelPageModule)
+  },
  
  
 ];

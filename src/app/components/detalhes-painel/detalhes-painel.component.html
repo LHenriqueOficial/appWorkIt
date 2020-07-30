@@ -1,0 +1,73 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-icon class="icon-card" name="close" (click)="fecharModal()"></ion-icon>
+        <ion-title>{{userPainel.tipoPublicacao}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-item>
+        <ion-label position="floating"><b>Nome:</b> </ion-label>
+        <ion-input type="text" [(ngModel)]="userPainel.nomeUser" [(value)]="userPainel.nomeUser"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating"><b>Area de Atuação:</b> </ion-label>
+        <ion-input type="text" [(ngModel)]="userPainel.areaAtuacao" [(value)]="userPainel.areaAtuacao"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating"><b>Profissão:</b> </ion-label>
+        <ion-input type="text" [(ngModel)]="userPainel.profissao" [(value)]="userPainel.profissao"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating"><b>Tempo Experiência:</b> </ion-label>
+        <ion-input type="text" [(value)]="userPainel.tempoExperiencia"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-icon slot="start" name="cash" color="success"></ion-icon>
+        <ion-label><b>Valor por hora:</b> </ion-label>
+        <ion-label>{{movimentacao.valorServico}} </ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-icon name="calendar" color="dark"> </ion-icon>
+        <ion-label><b>Hora de Inicio: </b> </ion-label>
+        <ion-label style="color: black;" displayFormat="DD MMM, YYYY HH:mm ">{{movimentacao.horaInicio}}</ion-label>
+    </ion-item>
+
+    <ion-textarea color="dark" [(value)]="public.descricao"><b>Descricao da {{public.tipoPublicacao}}</b> </ion-textarea>
+
+
+</ion-content>
+
+
+<ion-footer>
+    <ion-tabs>
+        <ion-tab-bar slot="bottom">
+            <ion-tab-button (click)="rota(public.userId)">
+                <ion-icon class="icon-mensagem" name="send"></ion-icon>
+                <ion-label color="dark"><b>Enviar Mensagen</b> </ion-label>
+            </ion-tab-button>
+            <br>
+
+        </ion-tab-bar>
+    </ion-tabs>
+</ion-footer>
+
+
+
+<!-- <ion-icon name="terminal"></ion-icon> -->
+
+<!-- 
+
+<ion-item>
+
+  <ion-item>
+      <ion-icon class="icon-mensagem" name="mail" (click)="rota(public.userId)">Enviar Mensagen</ion-icon>
+
+      <ion-button slot="end" (click)="rota(public.userId)" size="small" color="tertiary">Entrar em contato</ion-button>
+  </ion-item>
+  <ion-item>
+      <ion-button slot="end" (click)="rota(public.userId)" size="small" color="tertiary">Entrar em contato</ion-button>
+  </ion-item>
+
+</ion-item> -->

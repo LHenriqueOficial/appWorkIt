@@ -11,5 +11,7 @@ export class PainelUsuario {
     descricao?: string;
     dataPublicacao?: number;
     idUsuariologado?: string;
+    idPublicacao?: string;
+    status?: string;
 
 }

@@ -59,7 +59,7 @@ carregaUser(){
                console.log(doc.id, ' => ' , doc.data())
                this.nomeUser = doc.data().nome,
                this.sobreNome = doc.data().sobrenome,
-               this.profissao = doc.data().profissao.descricao,
+               this.profissao = doc.data().profissao?.descricao,
                this.idColecao = doc.id
                console.log("id dacoleção do usuario " + this.idColecao)
              })

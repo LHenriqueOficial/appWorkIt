@@ -34,23 +34,25 @@
 
 </ion-content>
 
+<ion-item>
+    <ion-footer>
+        <ion-tabs>
+            <ion-tab-bar slot="bottom">
+                <ion-tab-button (click)="rota(public.userId)" [disabled]="valor">
+                    <ion-icon class="icon-mensagem" name="send"></ion-icon>
+                    <ion-label color="dark"><b>Enviar Mensagen</b> </ion-label>
+                </ion-tab-button>
+                <ion-tab-button (click)="addUserPainel()" [disabled]="valor">
+                    <ion-icon class="icon-mensagem" name="terminal"></ion-icon>
+                    <ion-label color="dark"><b> Add ao Painel</b></ion-label>
+                </ion-tab-button>
+                <br>
 
-<ion-footer>
-    <ion-tabs>
-        <ion-tab-bar slot="bottom">
-            <ion-tab-button (click)="rota(public.userId)">
-                <ion-icon class="icon-mensagem" name="send"></ion-icon>
-                <ion-label color="dark"><b>Enviar Mensagen</b> </ion-label>
-            </ion-tab-button>
-            <ion-tab-button (click)="addUserPainel()">
-                <ion-icon class="icon-mensagem" name="terminal"></ion-icon>
-                <ion-label color="dark"><b> Add ao Painel</b></ion-label>
-            </ion-tab-button>
-            <br>
+            </ion-tab-bar>
+        </ion-tabs>
+    </ion-footer>
+</ion-item>
 
-        </ion-tab-bar>
-    </ion-tabs>
-</ion-footer>
 
 
 

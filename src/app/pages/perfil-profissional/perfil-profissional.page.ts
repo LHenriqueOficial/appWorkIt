@@ -105,7 +105,7 @@ export class PerfilProfissionalPage implements OnInit {
       console.log(this.listForm)
       console.log(this.listForm?.descricao);
       console.log(this.listForm?.titulo);
-      console.log(this.usuario?.formacao.titulo);
+      console.log(this.usuario?.formacao?.titulo);
       
     });
   }

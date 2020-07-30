@@ -19,7 +19,8 @@
 
 
     <ion-item lines="none" *ngFor=" let public of publicacao">
-        <ion-card class="item-card" *ngIf="userId != public.userId">
+        <!-- *ngIf="userId != public.userId" -->
+        <ion-card class="item-card">
             <ion-card-header>
                 <ion-avatar class="teste">
                     <img src="/assets/img/lauro.perfil.jpeg " />

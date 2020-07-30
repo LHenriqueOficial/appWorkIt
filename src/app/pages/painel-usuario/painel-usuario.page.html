@@ -19,6 +19,7 @@
 
 
     <ion-item lines="none" *ngFor=" let public of userPainel">
+
         <ion-card class="item-card" *ngIf="userId != public.userId">
             <ion-card-header>
                 <ion-avatar class="teste">
@@ -26,32 +27,54 @@
                     <!-- <ion-icon src="assets/icon/edit.svg "></ion-icon> -->
                 </ion-avatar>
                 <br>
-                <ion-card-title>{{public.nomeUser}}</ion-card-title>
+                <ion-card-title>{{public.nomeUser}}
+                </ion-card-title>
             </ion-card-header>
             <ion-card-content>
 
                 <b>Area de Atuação:</b> {{public.areaAtuacao}} <br> <b>Profissão:</b> {{public.profissao}} <br> {{public.tempoExperiencia}} Anos de Experiência
                 <br>
-                <ion-item>
-                    <ion-icon slot="start" name="cash" color="success"></ion-icon>
-                    <ion-label><b>Valor por hora:</b> </ion-label>
-                    <ion-label>{{public.valorHora}} </ion-label>
-                </ion-item>
+                <b>Data Publicação:</b> {{public.dataPublicacao | date:'dd-MM-yyyy HH:mm'}}
+                <br> <br> <br>
 
-                <!-- 
-              <br><br>
-              <ion-textarea style="border-radius: 5px; border-color: black;border-style: solid;">{{public.descricao}}</ion-textarea>
-              Publicado em: {{public.dataPublicacao | date:'dd-MM-yyyy HH:mm' }} -->
 
-                <ion-tab-button (click)="showDetalhesPublicacao(public.userId)">
-                    <ion-icon name="eye"></ion-icon>
-                    <ion-label><b>Visualizar</b> </ion-label>
-                </ion-tab-button>
+                <br><br>
+                <!-- <ion-textarea style="border-radius: 5px; border-color: black;border-style: solid;">{{public.descricao}}</ion-textarea> -->
+                <!-- Publicado em: {{public.dataPublicacao | date:'dd-MM-yyyy HH:mm' }} -->
+
+
 
 
             </ion-card-content>
 
+            <ion-tabs>
+                <ion-tab-bar slot="bottom">
+                    <!-- [routerLink]="['/detalhes',ordem.id,ordem.equipamento] -->
+                    <!-- (click)="showDetalhesPublicacao(public.id)" -->
+                    <ion-tab-button [routerLink]="['/detalhes-painel',public.id]">
+                        <ion-icon name="eye"></ion-icon>
+                        <ion-label style="color:#f5b026; font-size: larger; ">Visualizar</ion-label>
+                    </ion-tab-button>
+                    <ion-tab-button (click)="iniciaServico(public.id, 'Em execução')" *ngIf="public.status == Em execucao">
+                        <ion-icon name="logo-google-playstore"></ion-icon>
+                        <ion-label style="color:#f5b026; font-size: larger; ">Iniciar</ion-label>
+                    </ion-tab-button>
+                    <ion-tab-button (click)="showScreen('mensagens')">
+                        <ion-icon name="pause-circle"></ion-icon>
+                        <ion-label style="color:#f5b026; font-size: larger; ">Finalizar</ion-label>
+                        <ion-badge>6</ion-badge>
+                    </ion-tab-button>
+                    <ion-tab-button (click)="showScreen('atualizacao')">
+                        <ion-icon name="close-circle"></ion-icon>
+                        <ion-label style="color:#f5b026; font-size: larger; ">Excluir</ion-label>
+                        <ion-badge>6</ion-badge>
+                    </ion-tab-button>
+                </ion-tab-bar>
+            </ion-tabs>
+
+
         </ion-card>
+
 
 
     </ion-item>

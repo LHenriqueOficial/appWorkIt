@@ -76,11 +76,11 @@ export class DadosFinanceirosPage implements OnInit {
       ///////////////////////////////
       console.log(this.listRecebimento)
       this.listPagamento = data.cartaoPagamento;
-      this.pagamento.nomeTitular = this.listPagamento.nomeTitular;
-      this.pagamento.cpf = this.listPagamento.cpf;
-      this.pagamento.numeroCartao = this.listPagamento.numeroCartao;
-      this.pagamento.dataValidade = this.listPagamento.dataValidade;
-      this.pagamento.codigoValidacao = this.listPagamento.codigoValidacao;
+      this.pagamento.nomeTitular = this.listPagamento?.nomeTitular;
+      this.pagamento.cpf = this.listPagamento?.cpf;
+      this.pagamento.numeroCartao = this.listPagamento?.numeroCartao;
+      this.pagamento.dataValidade = this.listPagamento?.dataValidade;
+      this.pagamento.codigoValidacao = this.listPagamento?.codigoValidacao;
       console.log(this.listPagamento);
 
     });
