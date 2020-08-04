@@ -10,5 +10,7 @@ export class Movimentacao {
     horaInicio?: number;
     horaFinal?: number;
     valorPagamento?: number;
-    situacao?: string;
+    status?: string;
+    porcetagemSistema?:number;
+    horasTrabalhadas?: number;
 }

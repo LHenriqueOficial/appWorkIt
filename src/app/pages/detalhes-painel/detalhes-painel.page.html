@@ -26,18 +26,77 @@
         <ion-label position="floating"><b>Tempo Experiência:</b> </ion-label>
         <ion-input type="text" [(value)]="userPainel.tempoExperiencia"></ion-input>
     </ion-item>
-    <ion-item>
-        <ion-icon slot="start" name="cash" color="success"></ion-icon>
-        <ion-label><b>Valor por hora:</b> </ion-label>
-        <ion-label>{{movimentacao.valorServico}} </ion-label>
-    </ion-item>
-    <ion-item>
+    <ion-item *ngIf="userPainel.status == 'Em execucao'">
         <ion-icon name="calendar" color="dark"> </ion-icon>
         <ion-label><b>Hora de Inicio: </b> </ion-label>
         <ion-label style="color: black;">{{movimentacao.horaInicio | date:'dd-MM-yyyy HH:mm'}}</ion-label>
     </ion-item>
 
-    <ion-textarea color="dark" [(value)]="public.descricao"><b>Descricao da {{public.tipoPublicacao}}</b> </ion-textarea>
+
+
+    <ion-item *ngIf="userPainel.status == 'Finalizado'">
+        <ion-icon name="calendar" color="dark"> </ion-icon>
+        <ion-label><b>Hora de Inicio: </b> </ion-label>
+        <ion-label style="color: black;">{{movimentacao.horaInicio | date:'dd-MM-yyyy HH:mm'}}</ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="userPainel.status == 'Finalizado'">
+        <ion-icon name="calendar" color="dark"> </ion-icon>
+        <ion-label><b>Hora de Termino: </b> </ion-label>
+        <ion-label style="color: black;">{{movimentacao.horaFinal | date:'dd-MM-yyyy HH:mm'}}</ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="userPainel.status == null">
+        <ion-icon slot="start" name="cash" color="success"></ion-icon>
+        <ion-label><b>Valor por hora:</b> </ion-label>
+        <ion-label>{{userPainel.valorHora}} </ion-label>
+    </ion-item>
+    <ion-item *ngIf="userPainel.status == 'Em execucao' ">
+        <ion-icon slot="start" name="cash" color="success"></ion-icon>
+        <ion-label><b>Valor por hora:</b> </ion-label>
+        <ion-label>{{movimentacao.valorServico}} </ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="userPainel.status == 'Finalizado' ">
+        <ion-icon slot="start" name="cash" color="success"></ion-icon>
+        <ion-label><b>Valor por hora:</b> </ion-label>
+        <ion-label>{{movimentacao.valorServico}} </ion-label>
+    </ion-item>
+
+
+    <ion-item *ngIf="userPainel.status">
+        <ion-icon slot="start" name="alert-circle" color="success"></ion-icon>
+        <ion-label><b>Status:</b> </ion-label>
+        <ion-label>{{userPainel.status}} </ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="userPainel.status == 'Em execucao'">
+        <ion-icon name="time" color="dark"> </ion-icon>
+        <ion-label><b>Tempo Corrido: </b> </ion-label>
+        <ion-label style="color: black;">{{horaDecorrida}} </ion-label>
+
+    </ion-item>
+
+    <ion-item *ngIf="userPainel.status == 'Finalizado'">
+        <ion-icon name="time" color="dark"> </ion-icon>
+        <ion-label><b>Tempo Corrido: </b> </ion-label>
+        <ion-label style="color: black;">{{horaDecorrida}}</ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="userPainel.status == 'Em execucao'">
+        <ion-icon slot="start" name="cash" color="success"></ion-icon>
+        <ion-label><b>Valor do serviço:</b> </ion-label>
+        <ion-label> {{calculoAtual}} </ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="userPainel.status == 'Finalizado'">
+        <ion-icon slot="start" name="cash" color="success"></ion-icon>
+        <ion-label><b>Valor do serviço:</b> </ion-label>
+        <ion-label> {{calculoAtual}} </ion-label>
+    </ion-item>
+
+    <ion-textarea color="dark" [(value)]="public.descricao"><b>Descricao da {{userPainel.tipoPublicacao}}</b>
+        <br> {{userPainel.descricao}}</ion-textarea>
 
 
 </ion-content>
@@ -51,6 +110,17 @@
             <ion-tab-button (click)="rota(userPainel.userId)">
                 <ion-icon class="icon-mensagem" name="send"></ion-icon>
                 <ion-label color="dark"><b>Enviar Mensagen</b> </ion-label>
+                <ion-badge>6</ion-badge>
+            </ion-tab-button>
+
+            <ion-tab-button (click)="finalizaMovimentacao()">
+                <ion-icon class="icon-mensagem" name="pause-circle"></ion-icon>
+                <ion-label color="dark" style=" font-size: larger; "><b>Finalizar</b> </ion-label>
+            </ion-tab-button>
+
+            <ion-tab-button (click)="carregaContaSistema()">
+                <ion-icon class="icon-mensagem" name="home"></ion-icon>
+                <ion-label style="color:#f5b026; font-size: larger; ">Finalizar</ion-label>
             </ion-tab-button>
         </ion-tab-bar>
     </ion-tabs>

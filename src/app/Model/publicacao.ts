@@ -9,4 +9,5 @@ export class Publicacao {
     valorHora?: number;
     descricao?: string;
     dataPublicacao?: number;
+    status?: string;
 }

@@ -8,10 +8,9 @@ import { ModalController } from '@ionic/angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { DetalhesPainelComponent } from './../../components/detalhes-painel/detalhes-painel.component';
 import { Movimentacao } from './../../Model/movimentacao';
-import { data } from 'jquery';
 import { Publicacao } from './../../Model/publicacao';
 import { MovimentacaoService } from './../../services/movimentacao.service';
-import { timeStamp } from 'console';
+
 
 @Component({
   selector: 'app-painel-usuario',
@@ -87,7 +86,7 @@ export class PainelUsuarioPage implements OnInit {
          this.movimentacao.idContratante= this.userId;
          this.movimentacao.idContratado = this.usuarioPainel.userId
          this.movimentacao.idPublicacao = this.idPublicacao
-         this.movimentacao.situacao = "Em execucao"
+         this.movimentacao.status = "Em execucao"
 
          this.moviService.addMovimentacao(this.movimentacao);
         
