@@ -4,7 +4,7 @@ import { PainelUsuario } from 'src/app/Model/painel-usuario';
 import { PainelUsuarioService } from './../../services/painel-usuario.service';
 import { DetalhesPublicacaoComponent } from 'src/app/components/detalhes-publicacao/detalhes-publicacao.component';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { ModalController } from '@ionic/angular';
+import { ModalController, AlertController } from '@ionic/angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { DetalhesPainelComponent } from './../../components/detalhes-painel/detalhes-painel.component';
 import { Movimentacao } from './../../Model/movimentacao';
@@ -39,6 +39,7 @@ export class PainelUsuarioPage implements OnInit {
     private  modalCtrl: ModalController,
     public fbAuth: AngularFireAuth,
     public moviService: MovimentacaoService,
+    public AlertCtrl :AlertController,
 
   ) { 
 
@@ -47,6 +48,7 @@ export class PainelUsuarioPage implements OnInit {
         this.userId = user.uid;
         this.painelSubscription = this.painelUserService.getPainelUsers().subscribe(data =>{
          this.userPainel= data;
+         console.log(this.userPainel)
           
         })
      
@@ -99,6 +101,25 @@ export class PainelUsuarioPage implements OnInit {
 
   }
 
+  excluirUserPainel(status: string, id: string){
+
+    console.log(status);
+    if(status == "Em execucao"){
+      this.alertafalhaExcluirPaineluser()
+    }else{
+      this.painelUserService.deletePainelUser(id).then(function() {
+        this.alertaExcluirPaineluser();
+        
+      }).catch(async function(error) {
+      
+        console.error("Error ao exluclir documento: ", error);
+       
+      })
+  
+     
+    
+  }}
+
   
   async showDetalhesPublicacao(id: string){
     const detalhe = await this.modalCtrl.create({
@@ -114,6 +135,24 @@ export class PainelUsuarioPage implements OnInit {
     detalhe.present();
     
   }
+  async alertafalhaExcluirPaineluser(){
+    const alert = await this.AlertCtrl.create({
+      header:'Aviso ',
+      subHeader:'Serviço em execução',
+      message:'Não pode ser excluido no Momento',
+      buttons: ['Ok']
+    });
+    await alert.present();
+      }
 
+      async alertaExcluirPaineluser(){
+        const alert = await this.AlertCtrl.create({
+          header:'Aviso ',
+          subHeader:'',
+          message:'Serviço excluido com sucesso',
+          buttons: ['Ok']
+        });
+        await alert.present();
+          }
 
 }

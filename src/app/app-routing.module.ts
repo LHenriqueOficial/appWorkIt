@@ -55,6 +55,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/perfil-profissional/perfil-profissional.module').then( m => m.PerfilProfissionalPageModule)
   },
   {
+    path: 'dados-financeiros/:id/:idUserPainel',canActivate:[AuthGuard],
+    loadChildren: () => import('./pages/dados-financeiros/dados-financeiros.module').then( m => m.DadosFinanceirosPageModule)
+  },
+  {
     path: 'dados-financeiros/:id',canActivate:[AuthGuard],
     loadChildren: () => import('./pages/dados-financeiros/dados-financeiros.module').then( m => m.DadosFinanceirosPageModule)
   },
@@ -97,6 +101,14 @@ const routes: Routes = [
   {
     path: 'detalhes-painel/:id',
     loadChildren: () => import('./pages/detalhes-painel/detalhes-painel.module').then( m => m.DetalhesPainelPageModule)
+  },
+  {
+    path: 'pagamentos',
+    loadChildren: () => import('./pages/pagamentos/pagamentos.module').then( m => m.PagamentosPageModule)
+  },
+  {
+    path: 'pagamentos/:id',
+    loadChildren: () => import('./pages/pagamentos/pagamentos.module').then( m => m.PagamentosPageModule)
   },
  
  

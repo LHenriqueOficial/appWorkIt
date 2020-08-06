@@ -20,7 +20,7 @@
 
     <ion-item lines="none" *ngFor=" let public of userPainel">
 
-        <ion-card class="item-card" *ngIf="userId != public.userId">
+        <ion-card class="item-card" *ngIf="userId == public.idUsuariologado">
             <ion-card-header>
                 <ion-avatar class="teste">
                     <img src="/assets/img/lauro.perfil.jpeg " />
@@ -55,7 +55,7 @@
                         <ion-icon name="eye"></ion-icon>
                         <ion-label style="color:#f5b026; font-size: larger; ">Visualizar</ion-label>
                     </ion-tab-button>
-                    <ion-tab-button (click)="iniciaServico(public.id, 'Em execucao')" *ngIf="public.status == Em execucao">
+                    <ion-tab-button (click)="iniciaServico(public.id, 'Em execucao')" *ngIf="public.status == Em execucao ">
                         <ion-icon name="logo-google-playstore"></ion-icon>
                         <ion-label style="color:#f5b026; font-size: larger; ">Iniciar</ion-label>
                     </ion-tab-button>
@@ -64,11 +64,18 @@
                         <ion-label style="color:#f5b026; font-size: larger; ">Finalizar</ion-label>
                         <ion-badge>6</ion-badge>
                     </ion-tab-button>
-                    <ion-tab-button (click)="showScreen('atualizacao')">
+                    <ion-tab-button (click)="excluirUserPainel(public.status,public.id)" *ngIf="public.status != Em execucao ">
                         <ion-icon name="close-circle"></ion-icon>
                         <ion-label style="color:#f5b026; font-size: larger; ">Excluir</ion-label>
                         <ion-badge>6</ion-badge>
                     </ion-tab-button>
+                    <ion-tab-button (click)="excluirUserPainel(public.status,public.id)" *ngIf="public.status == null ">
+                        <ion-icon name="close-circle"></ion-icon>
+                        <ion-label style="color:#f5b026; font-size: larger; ">Excluir</ion-label>
+                        <ion-badge>6</ion-badge>
+                    </ion-tab-button>
+
+
                 </ion-tab-bar>
             </ion-tabs>
 

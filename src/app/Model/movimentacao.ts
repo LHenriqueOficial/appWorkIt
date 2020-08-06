@@ -9,8 +9,11 @@ export class Movimentacao {
     valorServico?: number;
     horaInicio?: number;
     horaFinal?: number;
-    valorPagamento?: number;
+    valorPagamento?: any;
     status?: string;
-    porcetagemSistema?:number;
+    statusPagamento?: string;
+    porcentagemSistema?:number;
     horasTrabalhadas?: number;
+    taxaServico?: any;
+
 }

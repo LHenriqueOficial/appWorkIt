@@ -35,6 +35,7 @@ export class DadosFinanceirosPage implements OnInit {
    "237 – Banco Bradesco S.A.", "341 – Banco Itaú S.A.", "389 – Banco Mercantil do Brasil S.A.",
     "399 – HSBC Bank Brasil S.A. – Banco Múltiplo", "422 – Banco Safra S.A.", "453 – Banco Rural S.A.",
      "633 – Banco Rendimento S.A.","652 – Itaú Unibanco Holding S.A.", "745 – Banco Citibank S.A."]
+  idUserPainel: any;
   constructor(
     private router:  Router,
     private fbAuth: AngularFireAuth,
@@ -47,6 +48,12 @@ export class DadosFinanceirosPage implements OnInit {
     private AlertCtrl: AlertController,
   ) { 
     this.id = this.activatedRoute.snapshot.params['id'];
+    this.idUserPainel = this.activatedRoute.snapshot.params['idUserPainel'];
+    if(this.idUserPainel){
+      this.alteraTela = 2;
+      console.log(this.alteraTela);
+    }
+    
     console.log("teste id parametro "+ this.id)
     if (this.id) this.loadUser();
   }
@@ -130,6 +137,33 @@ export class DadosFinanceirosPage implements OnInit {
    })
     
   }
+
+   updateDadosPagamento2(){
+
+    
+    var user =  this.db.collection("Usuarios").doc(this.id);
+ 
+    user.update({
+     "cartaoPagamento.nomeTitular": this.pagamento.nomeTitular,
+     "cartaoPagamento.numeroCartao": this.pagamento.numeroCartao,
+     "cartaoPagamento.cpf": this.pagamento.cpf, 
+     "cartaoPagamento.dataValidade": this.pagamento.dataValidade, 
+     "cartaoPagamento.codigoValidacao": this.pagamento.codigoValidacao,
+     
+   }).then(function()  {   
+     
+     console.log("Document successfully updated!");
+
+    
+   }).catch(async function(error) {
+     
+     console.error("Error updating document: ", error);
+    
+   })
+   this.router.navigate(['/detalhes-painel',this.idUserPainel])
+
+  }
+
 
 
   async presentLoading() {

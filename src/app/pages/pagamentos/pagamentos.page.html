@@ -1,0 +1,95 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button>
+                <ion-icon name="arrow-back-outline"></ion-icon>
+            </ion-back-button>
+        </ion-buttons>
+        <ion-avatar slot="end" size="small">
+            <ion-icon class="icon-card" src="assets/icon/bancario2.svg"></ion-icon>
+        </ion-avatar>
+        <ion-title>
+            <b>Efetuar Pagamento</b>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-item lines="full">
+        <ion-label position="floating"><b>Nome:</b> </ion-label>
+        <ion-input type="text" [(ngModel)]="userPainel.nomeUser" [(value)]="userPainel.nomeUser"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+        <ion-icon name="calendar" style="color: #f5b026;"> </ion-icon>
+        <ion-label style="font-size: 15px;"><b>Hora de Termino: </b> </ion-label>
+        <ion-label>{{movimentacao.horaFinal | date:'dd-MM-yyyy HH:mm'}}</ion-label>
+    </ion-item>
+
+    <ion-item lines="full">
+        <ion-icon slot="start" name="logo-bitcoin" style="color: #f5b026;"></ion-icon>
+        <ion-label style="font-size: 15px;"><b>Valor por hora:</b> </ion-label>
+        <ion-label>R${{movimentacao.valorServico}} </ion-label>
+    </ion-item>
+
+
+    <ion-item lines="full">
+        <ion-icon slot="start" name="alert-circle" style="color: #f5b026;"></ion-icon>
+        <ion-label style="font-size: 15px;"><b>Status Pagamento:</b> </ion-label>
+        <ion-label>{{movimentacao.statusPagamento}} </ion-label>
+    </ion-item>
+
+    <ion-item lines="full">
+        <ion-icon name="time" style="color: #f5b026;"> </ion-icon>
+        <ion-label style="font-size: 15px;"><b>Tempo de serviço: </b> </ion-label>
+        <ion-label>{{movimentacao.horasTrabalhadas}} </ion-label>
+    </ion-item>
+
+
+    <ion-item lines="full">
+        <ion-icon slot="start" name="logo-bitcoin" color="success"></ion-icon>
+        <ion-label style="font-size: 15px;"><b>Valor do serviço:</b> </ion-label>
+        <ion-label> R${{movimentacao.valorPagamento}} </ion-label>
+    </ion-item>
+
+    <ion-item lines="full">
+        <ion-icon slot="start" name="trending-up" style="color: #f5b026;"></ion-icon>
+        <ion-label style="font-size: 15px;"><b>Porcentagem:</b> </ion-label>
+        <br>
+        <ion-label> {{movimentacao.porcentagemSistema}}%</ion-label>
+    </ion-item>
+
+    <ion-item lines="full">
+        <ion-icon slot="start" name="logo-bitcoin" color="success"></ion-icon>
+        <ion-label style="font-size: 15px;"><b>Taxa de serviço:</b> </ion-label>
+        <ion-label> R${{movimentacao.taxaServico}} </ion-label>
+    </ion-item>
+    <br>
+
+    <ion-item lines="none">
+        <ion-label style="text-align: center;">Total a pagar => R${{movimentacao.valorPagamento}}</ion-label>
+    </ion-item>
+
+    <ion-item lines="none" *ngIf="movimentacao.statusPagamento == 'Pendente'">
+        <ion-icon slot="start" name="alert-circle" style="color: #f5b026; font-size: 50px; text-align: center;"></ion-icon>
+        <ion-label>{{movimentacao.statusPagamento}} </ion-label>
+    </ion-item>
+
+
+    <ion-item lines="none" *ngIf="movimentacao.statusPagamento == 'Efetuado'">
+        <ion-icon slot="start" name="thumbs-up" color="success" style=" font-size: 50px;"></ion-icon>
+        <ion-label>{{movimentacao.statusPagamento}} </ion-label>
+    </ion-item>
+
+
+</ion-content>
+
+
+<ion-item *ngIf="movimentacao.statusPagamento == 'Pendente'">
+    <ion-footer>
+        <ion-toolbar>
+            <ion-button (click)="EfetuarPagamento()" color="warning " size="small " expand="block "><b>Finalizar Pagamento</b></ion-button>
+        </ion-toolbar>
+    </ion-footer>
+</ion-item>

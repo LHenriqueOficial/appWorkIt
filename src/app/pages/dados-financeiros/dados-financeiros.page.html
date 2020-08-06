@@ -105,16 +105,51 @@
         <ion-input type="number" [(ngModel)]="pagamento.codigoValidacao"></ion-input>
     </ion-item>
 
+
+
+    <ion-item style="text-align: start; margin-left: auto; " *ngIf="alteraTela == 2">
+        <ion-label position="floating"><b>Nome do Titular:</b></ion-label>
+        <ion-input type="text" style="text-transform:none" [(ngModel)]="pagamento.nomeTitular"></ion-input>
+    </ion-item>
+
+    <ion-item style="text-align: start; margin-left: auto; " *ngIf="alteraTela == 2">
+        <ion-label position="floating">CPF:</ion-label>
+        <ion-input type="text" [(ngModel)]="pagamento.cpf"></ion-input>
+    </ion-item>
+
+
+    <ion-item style="text-align: start; margin-left: auto; " *ngIf="alteraTela == 2">
+        <ion-label position="floating"><b>Numero do Cartão:</b></ion-label>
+        <ion-input type="text" [(ngModel)]="pagamento.numeroCartao"></ion-input>
+    </ion-item>
+
+    <ion-item style="text-align: start; margin-left: auto; " *ngIf="alteraTela == 2">
+        <ion-label position="floating">Data Validade:</ion-label>
+        <ion-datetime displayFormat="MM/YY" max="2050" cancelText="Sair" [(ngModel)]="pagamento.dataValidade"></ion-datetime>
+    </ion-item>
+
+    <ion-item style="text-align: start; margin-left: auto; " *ngIf="alteraTela == 2">
+        <ion-label position="floating">Codigo Validação:</ion-label>
+        <ion-input type="number" [(ngModel)]="pagamento.codigoValidacao"></ion-input>
+    </ion-item>
+
+
 </ion-content>
 
 
 <ion-footer *ngIf="alteraTela == 1">
     <ion-toolbar>
-        <ion-button (click)="updateDadosRecebimento() " size="small " expand="block ">Salvar e voltar dados Recebimento</ion-button>
+        <ion-button (click)="updateDadosRecebimento() " size="small " expand="block ">Salvar e voltar</ion-button>
     </ion-toolbar>
 </ion-footer>
 <ion-footer *ngIf="alteraTela == 0">
     <ion-toolbar>
-        <ion-button (click)="updateDadosPagamento() " size="small " expand="block ">Salvar e voltar Dados Pagemento</ion-button>
+        <ion-button (click)="updateDadosPagamento() " size="small " expand="block ">Salvar e voltar</ion-button>
+    </ion-toolbar>
+</ion-footer>
+
+<ion-footer *ngIf="alteraTela == 2">
+    <ion-toolbar>
+        <ion-button (click)="updateDadosPagamento2() " size="small " expand="block ">Salvar e Continuar Pagamento</ion-button>
     </ion-toolbar>
 </ion-footer>
