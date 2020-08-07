@@ -117,7 +117,9 @@ export class AppComponent implements OnInit {
   
   }
 
-
+  showPage(nomePagina){
+    this.router.navigateByUrl(nomePagina);
+  }
   logOut(){
     this.fbAuth.auth.signOut();
     this.router.navigateByUrl('login')

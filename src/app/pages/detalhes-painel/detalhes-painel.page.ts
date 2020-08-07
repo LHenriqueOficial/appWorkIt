@@ -46,7 +46,7 @@ export class DetalhesPainelPage implements OnInit {
   horaDecorrida: any;
   horaInicio: number;
   calculoAtual: any;
-  valorServico: number;
+  valorServico:number;
   idContradado: string;
   porcentagemSistema: number;
 
@@ -68,6 +68,8 @@ export class DetalhesPainelPage implements OnInit {
   numeroCartao: string;
   cpf: string;
   result: string;
+  userId: string;
+  desabilitaMensagem: boolean = false;
   
   // usuario: any;
  
@@ -88,7 +90,12 @@ export class DetalhesPainelPage implements OnInit {
     private toastCtrl: ToastController,
   ) { 
 
-    
+    this.fbAuth.authState.subscribe(user=>{
+      if (user){
+        this.userId = user.uid;
+      }
+    })
+
     this.idPainelUser = this.activatedRoute.snapshot.params['id'];
     console.log(this.idPainelUser);
     this.painelUserSubscription= this.servicePainelUser.getPainelUser(this.idPainelUser).subscribe(data =>{
@@ -96,7 +103,12 @@ export class DetalhesPainelPage implements OnInit {
       console.log(this.userPainel)
       this.idContradado = this.userPainel.userId;
       console.log(this.idContradado)
-
+      console.log(this.userId)
+      console.log(this.desabilitaMensagem)
+      if(this.idContradado === this.userId){
+        this.desabilitaMensagem = true;
+        console.log(this.desabilitaMensagem)
+      }
       this.loadMovimentacao();
     })
   }
@@ -171,8 +183,8 @@ export class DetalhesPainelPage implements OnInit {
         console.log("dados cartao ok ")
         
     this.movimentacao.horaFinal = new Date().getTime();
-    this.horaDecorrida =  Number ((this.movimentacao.horaFinal - this.movimentacao.horaInicio)/1000 / 60/60).toFixed(2);
-    this.movimentacao.valorPagamento = Number (this.horaDecorrida * this.valorServico).toFixed(2);
+    this.horaDecorrida =  Number.parseFloat(((this.movimentacao.horaFinal - this.movimentacao.horaInicio)/1000 / 60/60).toFixed(2)) ;
+   this.movimentacao.valorPagamento = Number.parseFloat((this.horaDecorrida * this.valorServico).toFixed(2)) 
     this.movimentacao.porcentagemSistema = this.contaSistem.porcentagem;
     this.movimentacao.horasTrabalhadas = this.horaDecorrida;
      console.log(this.movimentacao.valorPagamento);
@@ -180,13 +192,12 @@ export class DetalhesPainelPage implements OnInit {
      this.movimentacao.statusPagamento = 'Pendente';
      
      console.log(this.movimentacao.status);
-     this.porcentagemSistema  = Number ((this.contaSistem.porcentagem * this.movimentacao.valorPagamento)/ 100);
+     this.porcentagemSistema  = Number.parseFloat(((this.contaSistem.porcentagem * this.movimentacao.valorPagamento)/ 100).toFixed(2)) ;
      console.log(this.porcentagemSistema);
-     this.movimentacao.taxaServico = this.porcentagemSistema.toFixed(2);
+     this.movimentacao.taxaServico = Number.parseFloat(this.porcentagemSistema.toFixed(2)) ;
         
 
-    //  atualiza conta usuario contratado
-    //  this.atualizaSaldoUsuario();
+
 this.movimentacaoService.updateMovimentacao(this.idMovimentacao, this.movimentacao)
     //  atualiza painel usuario
     this.userPainel.status = 'Finalizado'

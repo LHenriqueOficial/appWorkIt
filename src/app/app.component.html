@@ -22,19 +22,20 @@
                             <label> <b> Sair </b></label>
                         </ion-item>
 
-                        <!-- <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
-                            <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-                            <ion-label>{{ p.title }}</ion-label>
-                        </ion-item> -->
+                        <ion-item (click)="showPage('inicial')">
+                            <ion-icon slot="start" color="dark" class="icon-card" name="home"></ion-icon>
+                            <label> <b>Página Inicial</b></label>
+                        </ion-item>
+
                     </ion-menu-toggle>
                 </ion-list>
 
                 <ion-list id="labels-list">
-                    <ion-list-header>Labels</ion-list-header>
+                    <ion-list-header>Relatórios</ion-list-header>
 
-                    <ion-item *ngFor="let label of labels" lines="none">
-                        <ion-icon slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
-                        <ion-label>{{ label }}</ion-label>
+                    <ion-item lines="none" (click)="showPage('relatorio-movimentacao')">
+                        <ion-icon slot="start" name="trending-up" color="danger"></ion-icon>
+                        <ion-label><b>Suas Movimentações</b></ion-label>
                     </ion-item>
                 </ion-list>
             </ion-content>

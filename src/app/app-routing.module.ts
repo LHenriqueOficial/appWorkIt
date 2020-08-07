@@ -110,6 +110,10 @@ const routes: Routes = [
     path: 'pagamentos/:id',
     loadChildren: () => import('./pages/pagamentos/pagamentos.module').then( m => m.PagamentosPageModule)
   },
+  {
+    path: 'relatorio-movimentacao',
+    loadChildren: () => import('./pages/relatorio-movimentacao/relatorio-movimentacao.module').then( m => m.RelatorioMovimentacaoPageModule)
+  },
  
  
 ];

@@ -47,6 +47,7 @@ export class PagamentosPage implements OnInit {
   idContaUser: string;
   idContaSistema: string;
   result: string;
+  loading: HTMLIonLoadingElement;
 
 
 
@@ -76,6 +77,7 @@ export class PagamentosPage implements OnInit {
       console.log(this.idContradado)
       this.carregaUser();
       this.loadMovimentacao();
+      this.carregaContaUsuarioContratado()
     })
 
   }
@@ -84,6 +86,7 @@ export class PagamentosPage implements OnInit {
 
   
     this.carregaContaSistema();
+
   }
 
   loadMovimentacao(){
@@ -107,43 +110,60 @@ export class PagamentosPage implements OnInit {
    })   
   }
 
-  EfetuarPagamento(){
+ async EfetuarPagamento(){
+  await this.presentLoading();
+  
     if(this.numeroCartao && this.nomeTitular && this.dataValidade
       && this.cpf && this.codigoValidacao){
         console.log("dados cartao ok ")
+      
 
         this.atualizaSaldoUsuario();
+        this.atualizaSaldoSistema(this.movimentacao.taxaServico)
+        this.movimentacao.statusPagamento = 'Efetuado';
+        this.userPainel.status ='Finalizado e pago';
 
+        this.servicePainelUser.updatePainelUser(this.idPainelUser, this.userPainel)
+        this.movimentacaoService.updateMovimentacao(this.idMovimentacao, this.movimentacao)
+        await this.alertaPagamentoEfetuado();
+        
       }else{
         console.log("não é possivel efetuar pagamento");
         this.alertaDadosPagamento();
         this.result = "nao validado"
         this.router.navigate(['/dados-financeiros', this.idColecaoUsuario,this.idPainelUser])
       }
+      this.loading.dismiss();
   }
   
-
-
-
   atualizaSaldoUsuario(){
+
+     console.log(this.conta)
+      let valor = this.conta.saldo;
+      console.log(valor) 
+      this.conta.saldo = valor + this.movimentacao.valorPagamento;
+      console.log(this.conta.saldo);
+    this.contaService.updateConta(this.idContaUser, this.conta)
+
+  }
+
+
+ carregaContaUsuarioContratado(){
     let lista=this.db.collection<ContaUser>("ContaUser")
     lista.ref.where("idConta", "==" , this.userPainel.userId).get().then(res =>{
      res.forEach(doc => {
        this.contaUser.push(doc.data())
        console.log(doc.id, ' => ' , doc.data())
        this.idContaUser= doc.id
+       console.log(this.idContaUser)
      });
      this.contaSubscription = this.contaService.getConta(this.idContaUser).subscribe(data =>{
        this.conta = data;
-      let valor = this.conta.saldo;
-      console.log(valor) 
-      this.conta.saldo = valor + this.movimentacao.valorPagamento;
-      console.log(this.conta.saldo);
+      
   
      })
    
   
-    // this.contaService.updateConta(this.idContaUser, this.conta)
     })
    
    
@@ -157,7 +177,7 @@ export class PagamentosPage implements OnInit {
   
     console.log(this.contaSistem.saldo);
   
-    // this.contaSistemaService.updateContaSistema(this.idContaSistema, this.contaSistem);
+    this.contaSistemaService.updateContaSistema(this.idContaSistema, this.contaSistem);
   }
 
   carregaContaSistema(){
@@ -209,6 +229,33 @@ export class PagamentosPage implements OnInit {
     });
     await alert.present();
       }
+
+      async alertaPagamentoEfetuado(){
+        const alert = await this.AlertCtrl.create({
+          header:'Aviso ',
+          subHeader:'',
+          message:'Pagamento efetuado com sucesso.',
+          buttons: ['Ok']
+        });
+        await alert.present();
+          }
+
+      async presentToast(message: string) {
+        const toast = await this.toastCtrl.create({ message, duration: 2000 });
+        toast.present();
+      }
+
+      async presentLoading() {
+        this.loading = await this.loadingCtrl.create({
+          spinner: null,
+          duration: 5000,
+          message: 'Please wait...',
+          translucent: true,
+          
+          });
+        return this.loading.present();
+      }
+    
 
   }
 

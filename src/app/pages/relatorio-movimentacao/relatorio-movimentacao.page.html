@@ -1,0 +1,90 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button>
+                <ion-icon name="arrow-back-outline"></ion-icon>
+            </ion-back-button>
+
+        </ion-buttons>
+        <ion-avatar slot="end" size="small">
+            <!-- <ion-icon class="icon-card" src="assets/icon/bancario2.svg"></ion-icon> -->
+        </ion-avatar>
+        <ion-title>
+            <b>Suas Movimentações</b>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+
+    <!-- <ion-item lines="none"> -->
+
+    <ion-card *ngFor=" let movi of listaMovimentacao">
+        <ion-card-header>
+            <ion-card-title color="success" style="font-size: 20px;">Valor do Serviço: R${{movi.valorPagamento}}
+            </ion-card-title>
+
+        </ion-card-header>
+        <ion-card-content>
+            <ion-label><b>Inicio: </b>{{movi.horaInicio | date:'dd-MM-yyyy HH:mm'}}</ion-label>
+
+            <br>
+
+            <ion-label><b>Termino: </b>{{ movi.horaFinal | date:'dd-MM-yyyy HH:mm'}}</ion-label>
+
+            <br>
+
+            <ion-label><b>Horas Trabalhadas </b>{{ movi.horasTrabalhadas}}</ion-label>
+
+            <br>
+
+            <ion-label><b> Valor por hora:</b>{{ movi.valorServico}}</ion-label>
+
+            <br>
+
+            <ion-label><b>Porcetagem do Sitema:</b>{{ movi.orcentagemSistema}}</ion-label>
+            <br>
+            <ion-label><b>Taxa de Serviço:</b>{{ movi.taxaServico}}</ion-label>
+            <br>
+            <ion-label><b>Taxa de Serviço:</b>{{ movi.id}}</ion-label>
+        </ion-card-content>
+
+        <!-- <ion-tabs>
+            <ion-tab-bar slot="bottom">
+                <ion-tab-button [routerLink]="['/detalhes-painel',public.id]">
+                    <ion-icon name="eye"></ion-icon>
+                    <ion-label style="color:#f5b026; font-size: larger; ">Visualizar</ion-label>
+                </ion-tab-button>
+                <ion-tab-button (click)="iniciaServico(public.id, 'Em execucao')" *ngIf="public.status == Em execucao ">
+                    <ion-icon name="logo-google-playstore"></ion-icon>
+                    <ion-label style="color:#f5b026; font-size: larger; ">Iniciar</ion-label>
+                </ion-tab-button>
+                <ion-tab-button (click)="showScreen('mensagens')">
+                    <ion-icon name="pause-circle"></ion-icon>
+                    <ion-label style="color:#f5b026; font-size: larger; ">Finalizar</ion-label>
+                    <ion-badge>6</ion-badge>
+                </ion-tab-button>
+                <ion-tab-button (click)="excluirUserPainel(public.status,public.id)" *ngIf="public.status != Em execucao ">
+                    <ion-icon name="close-circle"></ion-icon>
+                    <ion-label style="color:#f5b026; font-size: larger; ">Excluir</ion-label>
+                    <ion-badge>6</ion-badge>
+                </ion-tab-button>
+                <ion-tab-button (click)="excluirUserPainel(public.status,public.id)" *ngIf="public.status == null ">
+                    <ion-icon name="close-circle"></ion-icon>
+                    <ion-label style="color:#f5b026; font-size: larger; ">Excluir</ion-label>
+                    <ion-badge>6</ion-badge>
+                </ion-tab-button>
+
+
+            </ion-tab-bar>
+        </ion-tabs> -->
+
+    </ion-card>
+
+    <!-- </ion-item> -->
+
+
+
+</ion-content>

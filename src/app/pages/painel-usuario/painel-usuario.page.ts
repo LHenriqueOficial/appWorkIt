@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { PainelUsuario } from 'src/app/Model/painel-usuario';
 import { PainelUsuarioService } from './../../services/painel-usuario.service';
 import { DetalhesPublicacaoComponent } from 'src/app/components/detalhes-publicacao/detalhes-publicacao.component';
@@ -25,6 +25,9 @@ export class PainelUsuarioPage implements OnInit {
   public valorPublicacao: number;
   public idPublicacao:string;
   public idPainelUser: string;
+  listaPainel: Observable<PainelUsuario[]>
+  lista: Observable<PainelUsuario[]>
+
 
 
   public usuarioPainel: PainelUsuario ={};
@@ -32,6 +35,7 @@ export class PainelUsuarioPage implements OnInit {
 
 
   userId: string;
+  usuarioContratado: any;
 
   constructor(
     private painelUserService: PainelUsuarioService,
@@ -48,6 +52,7 @@ export class PainelUsuarioPage implements OnInit {
         this.userId = user.uid;
         this.painelSubscription = this.painelUserService.getPainelUsers().subscribe(data =>{
          this.userPainel= data;
+         
          console.log(this.userPainel)
           
         })
@@ -58,10 +63,29 @@ export class PainelUsuarioPage implements OnInit {
     )}
 
   ngOnInit() {
+    this.listarMensagens();
   }
 
   ngOnDestroy() {
     this.painelSubscription.unsubscribe();
+  }
+
+
+  listarMensagens(){
+    this.lista = this.db.collection<PainelUsuario>("PainelUsuario" , ref =>{
+      return ref.limit(100).orderBy("dataPublicacao")
+    }).valueChanges()/// faz a consulta ser dinamica toda vez que alterar a base de dados altera a view
+    this.lista.subscribe(res =>
+      {
+      this.filtraLista(res)
+      })
+  }
+
+  filtraLista(res){
+
+    this.listaPainel =res.filter(t=>(t.idUsuariologado == this.userId )|| t.userId == this.userId) 
+
+    console.log(this.listaPainel);
   }
 
   iniciaServico(id:string, status: string){
@@ -96,10 +120,11 @@ export class PainelUsuarioPage implements OnInit {
   });
   }
 
- 
-  finalizaServico(){
+  showDetalhesPainel(valor:string){
 
   }
+
+ 
 
   excluirUserPainel(status: string, id: string){
 
@@ -108,8 +133,7 @@ export class PainelUsuarioPage implements OnInit {
       this.alertafalhaExcluirPaineluser()
     }else{
       this.painelUserService.deletePainelUser(id).then(function() {
-        this.alertaExcluirPaineluser();
-        
+        console.error("REmovido com sucesso : ");
       }).catch(async function(error) {
       
         console.error("Error ao exluclir documento: ", error);

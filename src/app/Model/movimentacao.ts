@@ -1,7 +1,6 @@
 
 
 export class Movimentacao {
-
     idMovimentacao?: string;
     idContratante?: string;
     idContratado?: string;
@@ -9,11 +8,11 @@ export class Movimentacao {
     valorServico?: number;
     horaInicio?: number;
     horaFinal?: number;
-    valorPagamento?: any;
+    valorPagamento?:number;
     status?: string;
     statusPagamento?: string;
     porcentagemSistema?:number;
     horasTrabalhadas?: number;
-    taxaServico?: any;
+    taxaServico?: number;
 
 }
