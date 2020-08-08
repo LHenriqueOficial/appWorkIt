@@ -42,6 +42,7 @@ export class DetalhesPainelComponent implements OnInit {
   ) { 
 
     this.idUser= navParams.get('id')
+   
   
    this.painelUserSubscription= this.servicePainelUser.getPainelUser(this.idUser).subscribe(data =>{
       this.userPainel = data;

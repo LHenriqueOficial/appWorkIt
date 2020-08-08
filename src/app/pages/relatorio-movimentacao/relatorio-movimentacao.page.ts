@@ -5,6 +5,9 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { ActivatedRoute } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { element } from 'protractor';
+import { DetalhesPublicacaoComponent } from 'src/app/components/detalhes-publicacao/detalhes-publicacao.component';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-relatorio-movimentacao',
@@ -16,7 +19,8 @@ export class RelatorioMovimentacaoPage implements OnInit {
   listaMovimentacao: Observable<Movimentacao[]>
   lista: Observable<Movimentacao[]>
   usuarioLogado: string;
-  public movi = new Array<Movimentacao>();
+  contagem: number =0;
+  total: any;
 
 
   constructor(
@@ -24,11 +28,12 @@ export class RelatorioMovimentacaoPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private usuarioService: UsuarioService,
    public db: AngularFirestore,
+   private  modalCtrl: ModalController,
   ) { }
 
   ngOnInit() {
     this.verificaLogin();
-    this.listarMensagens();
+    this.listarMovimentacao();
   }
 
   verificaLogin(){
@@ -40,16 +45,13 @@ export class RelatorioMovimentacaoPage implements OnInit {
   }
 
 
-  listarMensagens(){
+  listarMovimentacao(){
     this.lista = this.db.collection<Movimentacao>("Movimentacao" , ref =>{
       return ref.limit(100).orderBy("horaInicio")
     }).valueChanges()/// faz a consulta ser dinamica toda vez que alterar a base de dados altera a view
     this.lista.subscribe(res =>
       {
-        // res.forEach(doc =>{
-          // this.movi.push(doc.data())
-          // console.log()
-        // })
+      
       this.filtraLista(res)
       })
   }
@@ -57,8 +59,36 @@ export class RelatorioMovimentacaoPage implements OnInit {
   filtraLista(res){
 
     this.listaMovimentacao =res.filter(t=>(t.idContratante == this.usuarioLogado || t.idContratado == this.usuarioLogado) ) 
-
+    
     console.log(this.listaMovimentacao);
+    this.listaMovimentacao.forEach(doc=>{
+      this.contagem = this.contagem + 1;
+      console.log(this.contagem);
+    
+    })
+
+
   }
 
+  
+  async showDetalhesPublicacao(id: string, pagina:string){
+    console.log("nome da pagina enviada" + pagina);
+    const detalhe = await this.modalCtrl.create({
+      component:DetalhesPublicacaoComponent,
+      cssClass: 'custom-modal',
+      //passando parametro no component modal
+      componentProps:{
+        id:id,
+        pagina:pagina
+      }
+    
+    })
+    detalhe.present();
+    
+
+  }
 }
+
+
+  
+

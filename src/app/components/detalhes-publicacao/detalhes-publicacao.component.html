@@ -42,9 +42,17 @@
                     <ion-icon class="icon-mensagem" name="send"></ion-icon>
                     <ion-label color="dark"><b>Enviar Mensagen</b> </ion-label>
                 </ion-tab-button>
+
+
                 <ion-tab-button (click)="addUserPainel()" [disabled]="valor">
                     <ion-icon class="icon-mensagem" name="terminal"></ion-icon>
                     <ion-label color="dark"><b> Add ao Painel</b></ion-label>
+                </ion-tab-button>
+
+
+                <ion-tab-button (click)="excluirUserPainel(public.status,public.id)" [disabled]="valor2">
+                    <ion-icon class="icon-mensagem" name="close-circle"></ion-icon>
+                    <ion-label color="dark"><b>Excluir Publicação</b> </ion-label>
                 </ion-tab-button>
                 <br>
 
@@ -52,23 +60,3 @@
         </ion-tabs>
     </ion-footer>
 </ion-item>
-
-
-
-
-<!-- <ion-icon name="terminal"></ion-icon> -->
-
-<!-- 
-
-<ion-item>
-
-    <ion-item>
-        <ion-icon class="icon-mensagem" name="mail" (click)="rota(public.userId)">Enviar Mensagen</ion-icon>
-
-        <ion-button slot="end" (click)="rota(public.userId)" size="small" color="tertiary">Entrar em contato</ion-button>
-    </ion-item>
-    <ion-item>
-        <ion-button slot="end" (click)="rota(public.userId)" size="small" color="tertiary">Entrar em contato</ion-button>
-    </ion-item>
-
-</ion-item> -->

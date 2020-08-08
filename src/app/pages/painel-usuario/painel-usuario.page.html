@@ -39,11 +39,6 @@
 
 
                 <br><br>
-                <!-- <ion-textarea style="border-radius: 5px; border-color: black;border-style: solid;">{{public.descricao}}</ion-textarea> -->
-                <!-- Publicado em: {{public.dataPublicacao | date:'dd-MM-yyyy HH:mm' }} -->
-
-
-
 
             </ion-card-content>
 
@@ -123,16 +118,18 @@
                         <ion-icon name="logo-google-playstore"></ion-icon>
                         <ion-label style="color:#f5b026; font-size: larger; ">Iniciar</ion-label>
                     </ion-tab-button>
+
                     <ion-tab-button (click)="showScreen('mensagens')">
                         <ion-icon name="pause-circle"></ion-icon>
                         <ion-label style="color:#f5b026; font-size: larger; ">Finalizar</ion-label>
                         <ion-badge>6</ion-badge>
                     </ion-tab-button>
+
                     <ion-tab-button (click)="excluirUserPainel(public.status,public.id)" *ngIf="public.status != Em execucao ">
                         <ion-icon name="close-circle"></ion-icon>
                         <ion-label style="color:#f5b026; font-size: larger; ">Excluir</ion-label>
-                        <ion-badge>6</ion-badge>
                     </ion-tab-button>
+
                     <ion-tab-button (click)="excluirUserPainel(public.status,public.id)" *ngIf="public.status == null ">
                         <ion-icon name="close-circle"></ion-icon>
                         <ion-label style="color:#f5b026; font-size: larger; ">Excluir</ion-label>
