@@ -132,8 +132,6 @@ export class DetalhesPublicacaoComponent implements OnInit {
     this.alertaPainelUserIserido();
     this.servicePainelUser.addPainelUser(this.userPainel)
 
-   
-
     this.modalCtrl.dismiss();
         }
         })

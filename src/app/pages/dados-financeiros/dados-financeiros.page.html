@@ -86,7 +86,7 @@
 
     <ion-item style="text-align: start; margin-left: auto; " *ngIf="alteraTela == 0">
         <ion-label position="floating">CPF:</ion-label>
-        <ion-input type="text" [(ngModel)]="pagamento.cpf"></ion-input>
+        <ion-input type="text" mask="999.999.999-99" [(ngModel)]="pagamento.cpf"></ion-input>
     </ion-item>
 
 

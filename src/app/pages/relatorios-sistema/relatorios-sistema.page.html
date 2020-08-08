@@ -1,0 +1,56 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button>
+                <ion-icon name="arrow-back-outline"></ion-icon>
+            </ion-back-button>
+        </ion-buttons>
+        <ion-avatar slot="end" size="small">
+            <ion-icon class="icon-card" name="analytics"></ion-icon>
+        </ion-avatar>
+        <ion-title>
+            <b>Relatórios Sistema</b>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+    <!-- class="item-card"  -->
+    <ion-item lines="none">
+        <ion-card>
+            <ion-card-header (click)="rota('/perfil-pessoal')">
+                <ion-card-title>Usuários Sistema</ion-card-title>
+                <ion-icon class="icon-card" src="assets/icon/perfil-pessoal.svg"></ion-icon>
+                <ion-card-subtitle>Quantidade: {{ listaUsuarios.length}}</ion-card-subtitle>
+            </ion-card-header>
+        </ion-card>
+    </ion-item>
+
+    <ion-item lines="none">
+        <ion-card>
+            <ion-card-header (click)="rota('/perfil-profissional')">
+                <ion-card-title>Publicações</ion-card-title>
+                <ion-icon class="icon-card" src="assets/icon/perfil-profissional2.svg"></ion-icon>
+                <ion-card-subtitle>Quantidade:{{ this.listaPublicacao.length}}</ion-card-subtitle>
+            </ion-card-header>
+        </ion-card>
+    </ion-item>
+
+
+    <ion-item lines="none">
+        <ion-card>
+            <ion-card-header (click)="rota('/dados-financeiros')">
+                <ion-card-title>Movimentações</ion-card-title>
+                <ion-icon class="icon-card" src="assets/icon/bancario2.svg"></ion-icon>
+                <ion-card-subtitle><b>Quantidade:{{ listaMovimentacao.length}}</b></ion-card-subtitle>
+                <ion-card-subtitle><b>Total Pagamentos:</b>R${{totalPagamentos}}</ion-card-subtitle>
+                <ion-card-subtitle><b>Total de taxas:</b> R${{totalTaxas}}</ion-card-subtitle>
+                <ion-card-subtitle><b>Total movimentado:</b>R${{totalMovimentado}}</ion-card-subtitle>
+            </ion-card-header>
+        </ion-card>
+
+    </ion-item>
+
+
+</ion-content>

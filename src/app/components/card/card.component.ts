@@ -6,7 +6,6 @@ import { Usuario } from 'src/app/Model/usuario';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Publicacao } from './../../Model/publicacao';
 import { PublicacaoService } from 'src/app/services/publicacao.service';
-import { data } from 'jquery';
 import { Subscription } from 'rxjs';
 
 

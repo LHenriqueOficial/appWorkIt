@@ -114,6 +114,10 @@ const routes: Routes = [
     path: 'relatorio-movimentacao',
     loadChildren: () => import('./pages/relatorio-movimentacao/relatorio-movimentacao.module').then( m => m.RelatorioMovimentacaoPageModule)
   },
+  {
+    path: 'relatorios-sistema',
+    loadChildren: () => import('./pages/relatorios-sistema/relatorios-sistema.module').then( m => m.RelatoriosSistemaPageModule)
+  },
  
  
 ];
