@@ -6,7 +6,6 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { Usuario } from 'src/app/Model/usuario';
 import { Mensagens } from './../../Model/mensagens';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-mensagens',
@@ -16,13 +15,19 @@ import { async } from '@angular/core/testing';
 export class MensagensPage implements OnInit {
  
   private usuarioSubscription: Subscription;
-  public usuario: Usuario ={}
+  public userDe:Usuario={};
+  public userPara :Usuario={};
   idUsuarioMensagem: any;
   mensagem: Mensagens ={};
   usuarioDe:string;
   usuarioPara:string;
   listamensagens: Observable<Mensagens[]>
   lista: Observable<Mensagens[]>
+  usuario=new Array<Usuario>();
+  idColecaoUsuarioDe: string;
+  nomeUser: any;
+  idColecaoUsuarioPara: string;
+  nomede: string;
 
 
   constructor(
@@ -33,28 +38,52 @@ export class MensagensPage implements OnInit {
   
 
   ) { 
-
-    // this.mensagem = new Mensagens()
     this.usuarioPara= this.activatedRoute.snapshot.params['id'];
     console.log("teste id parametro "+ this.usuarioPara)
-    if (this.usuarioPara) this.loadUser();
+
+    let users=this.db.collection<Usuario>("Usuarios")
+    users.ref.where("userId", "==", this.usuarioPara).get().then(result=>{
+           result.forEach(doc =>{
+             this.usuario.push(doc.data())
+             console.log(doc.id, ' => ' , doc.data())
+             this.idColecaoUsuarioPara= doc.id
+             console.log("id dacoleção do usuario " + this.idColecaoUsuarioPara)
+           })
+               this.usuarioSubscription = this.usuarioService.getUsuario(this.idColecaoUsuarioPara).subscribe(data => {
+                this.userPara = data;
+               })
+        })
+
+    this.fbAuth.authState.subscribe(user=>{
+      if(user){
+        this.usuarioDe = user.uid
+        let users=this.db.collection<Usuario>("Usuarios")
+        users.ref.where("userId", "==", this.usuarioDe).get().then(result=>{
+               result.forEach(doc =>{
+                 this.usuario.push(doc.data())
+                 console.log(doc.id, ' => ' , doc.data())
+                 this.idColecaoUsuarioDe = doc.id
+                 console.log("id dacoleção do usuario " + this.idColecaoUsuarioDe)
+               })
+                   this.usuarioSubscription = this.usuarioService.getUsuario(this.idColecaoUsuarioDe).subscribe(data => {
+                    this.userDe = data;
+                   
+                   })
+            })
+      }
+    })    
+    
   }
 
   ngOnInit() {
-this.verificaLogin();
+
 this.listarMensagens();
   }
 
   ngOnDestroy() {
   }
 
-  verificaLogin(){
-    this.fbAuth.authState.subscribe(user=>{
-      if(user){
-        this.usuarioDe = user.uid
-      }
-    })
-  }
+  
   listarMensagens(){
     this.lista = this.db.collection<Mensagens>("Mensagens" , ref =>{
       return ref.limit(100).orderBy("data")
@@ -70,13 +99,7 @@ this.listarMensagens();
     this.listamensagens =res.filter(t=>(t.de == this.usuarioDe && t.para == this.usuarioPara)|| t.para == this.usuarioDe && t.de == this.usuarioPara ) 
 
     console.log(this.listamensagens);
-  }
 
-  loadUser() {
-    // this.usuarioSubscription = this.usuarioService.getUsuario(this.id).subscribe(data => {
-    //   this.usuario = data;
-    //   console.log(this.usuario);
-    // });
   }
 
 PostarMensagem(){
@@ -85,12 +108,23 @@ PostarMensagem(){
     this.mensagem.para = this.usuarioPara
     this.mensagem.data = new Date().getTime();
 
+    this.mensagem.nomeDe = this.userDe.nome;
+    this.mensagem.nomePara =this.userPara.nome;
+    this.mensagem.imagemDe = '';
+    this.mensagem.ImagemPara ='';
+    console.log(this.mensagem.nomeDe)
+    console.log(this.mensagem.nomeDe)
+
     let mensagens =  this.db.collection("Mensagens")
     mensagens.add({
       de: this.mensagem.de,
       para:this.mensagem.para,
       texto: this.mensagem.texto,
       data: this.mensagem.data,
+      nomeDe:this.mensagem.nomeDe,
+      nomePara:this.mensagem.nomePara,
+      imagemDe:this.mensagem.imagemDe,
+      ImagemPara:this.mensagem.ImagemPara
 
     })
 

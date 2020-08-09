@@ -1,8 +1,8 @@
 export class Profissao {
 
-descricao:string;
-areaAtuacao: string;
-tempoExperiencia:string;
+descricao?:string;
+areaAtuacao?: string;
+tempoExperiencia?:string;
 
 
 

@@ -20,6 +20,8 @@ export class Usuario {
     email?: string;
     senha?: string;
     status?: boolean;
+    statusPerfilProfissional?: string;
+    statusPerfilPessoal?: string;
     profissao?: Profissao;
     formacao?: Formacao;
     cartaoPagamento?: CartaoPagamento;

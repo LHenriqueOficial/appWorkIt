@@ -118,6 +118,10 @@ const routes: Routes = [
     path: 'relatorios-sistema',
     loadChildren: () => import('./pages/relatorios-sistema/relatorios-sistema.module').then( m => m.RelatoriosSistemaPageModule)
   },
+  {
+    path: 'menssagens-usuario',
+    loadChildren: () => import('./pages/menssagens-usuario/menssagens-usuario.module').then( m => m.MenssagensUsuarioPageModule)
+  },
  
  
 ];

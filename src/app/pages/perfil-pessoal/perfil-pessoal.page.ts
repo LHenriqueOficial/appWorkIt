@@ -63,6 +63,9 @@ export class PerfilPessoalPage implements OnInit {
 
 
   async updateUser(){
+
+    this.usuario.statusPerfilPessoal='completado';
+    this.usuarioService.updateUsuario(this.id, this.usuario) 
     
       await this.presentLoading();
       this.usuarioService.updateUsuario(this.id, this.usuario).then(async () => {

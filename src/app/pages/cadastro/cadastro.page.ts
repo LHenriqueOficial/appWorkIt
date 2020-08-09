@@ -81,6 +81,8 @@ export class CadastroPage implements OnInit {
         email:this.usuario.email,
         senha:this.usuario.senha,
         userId:user.uid,
+        statusPerfilProfissional: 'nao completo',
+        statusPerfilPessoal: 'nao completo',
       });
       this.contaUser.nome = this.usuario.nome;
       this.contaUser.email = user.email;

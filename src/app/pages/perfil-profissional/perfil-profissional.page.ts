@@ -113,8 +113,8 @@ export class PerfilProfissionalPage implements OnInit {
 
 
 async updateUser(){
-
-
+this.usuario.statusPerfilProfissional='completado';
+this.usuarioService.updateUsuario(this.id, this.usuario)
 var user = await this.db.collection("Usuarios").doc(this.id);
  
  user.update({
@@ -127,6 +127,7 @@ var user = await this.db.collection("Usuarios").doc(this.id);
 }).then(async function() {   
   
   console.log("Document successfully updated!");
+  
 }).catch(async function(error) {
   
   console.error("Error updating document: ", error);
