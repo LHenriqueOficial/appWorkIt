@@ -17,10 +17,12 @@ import { ModalController } from '@ionic/angular';
 export class RelatorioMovimentacaoPage implements OnInit {
 
   listaMovimentacao: Observable<Movimentacao[]>
+  public listaMoviment = new Array<Movimentacao>();
   lista: Observable<Movimentacao[]>
   usuarioLogado: string;
   contagem: number =0;
-  total: any;
+  total: number=0;
+  totalMovimentado: number;
 
 
   constructor(
@@ -58,16 +60,17 @@ export class RelatorioMovimentacaoPage implements OnInit {
 
   filtraLista(res){
 
-    this.listaMovimentacao =res.filter(t=>(t.idContratante == this.usuarioLogado || t.idContratado == this.usuarioLogado) ) 
+    this.listaMoviment =res.filter(t=>(t.idContratante == this.usuarioLogado || t.idContratado == this.usuarioLogado) ) 
     
-    console.log(this.listaMovimentacao);
-    this.listaMovimentacao.forEach(doc=>{
+    console.log(this.listaMoviment);
+    this.listaMoviment.forEach(element=>{
       this.contagem = this.contagem + 1;
+      this.total = this.total + element.valorPagamento
       console.log(this.contagem);
-    
+      console.log(this.total)
     })
-
-
+    this.totalMovimentado = Number.parseFloat(this.total.toFixed(2));
+    console.log(this.totalMovimentado)
   }
 
   

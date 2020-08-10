@@ -3,12 +3,12 @@
 
         <ion-icon class="icon-start" name="cog" slot="start" (click)="rota()"></ion-icon>
         <!-- routerLink="/edit-perfil" -->
-        <ion-avatar slot="end" size="small">
+        <ion-avatar slot="end" size="small" (click)="OpenImagem()">
             <img src="/assets/img/lauro.perfil.jpeg" />
         </ion-avatar>
+        <ion-title style="text-align: center; "><b>{{nomeUser}} {{sobreNome}}</b> </ion-title>
         <ion-label>
-            <h2><b>{{nomeUser}} {{sobreNome}}</b></h2>
-            <p>{{profissao}}</p>
+            <p style="text-align: center;">{{profissao}}</p>
         </ion-label>
     </ion-toolbar>
 </ion-header>
@@ -25,7 +25,7 @@
             <ion-icon name="home"></ion-icon>
             <ion-label>Home</ion-label>
         </ion-tab-button>
-        <ion-tab-button (click)="showCard()">
+        <ion-tab-button (click)="showCard()" [disabled]="valor">
             <ion-icon name="cloud-upload"></ion-icon>
             <ion-label>Publicar</ion-label>
         </ion-tab-button>
@@ -33,15 +33,15 @@
             <ion-icon name="terminal"></ion-icon>
             <ion-label>Painel</ion-label>
         </ion-tab-button>
-        <ion-tab-button (click)="showScreen('menssagens-usuario')">
+        <!-- <ion-tab-button (click)="showScreen('menssagens-usuario')">
             <ion-icon name="mail"></ion-icon>
             <ion-label>Mensagem</ion-label>
             <ion-badge>6</ion-badge>
-        </ion-tab-button>
+        </ion-tab-button> -->
         <ion-tab-button (click)="showScreen('atualizacao')">
             <ion-icon name="layers"></ion-icon>
             <ion-label>Atualização</ion-label>
-            <ion-badge>6</ion-badge>
+            <ion-badge>{{quantidadePublicacao}}</ion-badge>
         </ion-tab-button>
 
     </ion-tab-bar>

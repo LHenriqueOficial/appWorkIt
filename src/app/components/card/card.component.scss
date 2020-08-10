@@ -13,3 +13,15 @@ ion-card {
     font-size: 30px;
     color: #f5b026;
 }
+
+.alertDanger {
+    --background-color: white;
+    --color: red;
+    button {
+        color: red;
+    }
+}
+
+.my-custom-class {
+    background: red;
+}

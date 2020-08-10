@@ -44,7 +44,8 @@ export class MenssagensUsuarioPage implements OnInit {
 
   filtraLista(res){
 
-    this.listamensagens =res.filter(t=>(t.de == this.userId || t.para == this.userId)) 
+    this.listamensagens =res.filter(t=>(t.de == this.userId && t.para ==! this.userId) ||  t.para == this.userId && t.de ==! this.userId) 
+    // this.listamensagens =res.filter(t=>(t.de == this.usuarioDe && t.para == this.usuarioPara)|| t.para == this.usuarioDe && t.de == this.usuarioPara ) 
 
     console.log(this.listamensagens);
 

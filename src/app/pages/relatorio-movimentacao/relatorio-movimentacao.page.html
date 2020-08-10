@@ -7,34 +7,26 @@
 
         </ion-buttons>
         <ion-avatar slot="end" size="small">
-            <!-- <ion-icon class="icon-card" src="assets/icon/bancario2.svg"></ion-icon> -->
         </ion-avatar>
         <ion-title>
-            <b>Suas Movimentações</b>
+            <b>Suas Movimentações </b>
+            <ion-label style="text-align: end;">R${{ totalMovimentado}}</ion-label>
         </ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-item lines="none">
 
-    <ion-tabs>
-        <ion-tab-bar slot="bottom">
+    <ion-icon class="icon-start" name="calculator" slot="start" (click)="rota()"></ion-icon>
+    <ion-label color="warning">Quantidade:</ion-label>
+    <ion-badge color="warning" slot="end">{{contagem}}</ion-badge>
 
-            <!-- (click)="showDetalhesPublicacao(public.id)" -->
-            <!-- [routerLink]="['/detalhes-painel',public.id]" -->
-            <ion-tab-button (click)="showScreen('mensagens')">
-                <ion-icon name="calculator"></ion-icon>
-                <ion-label style="color:#f5b026; font-size: 15px; ">Quantidade de Movimentações</ion-label>
-                <ion-badge color="warning">{{contagem}}</ion-badge>
-            </ion-tab-button>
-        </ion-tab-bar>
-    </ion-tabs>
 </ion-item>
 
 <ion-content>
 
 
-    <ion-card *ngFor=" let movi of listaMovimentacao" (click)="showDetalhesPublicacao(movi.idContratado,'pagina relatorios')">
+    <ion-card *ngFor=" let movi of listaMoviment" (click)="showDetalhesPublicacao(movi.idContratado,'pagina relatorios')">
         <ion-card-header>
             <ion-card-title color="success" style="font-size: 20px;">Valor do Serviço: R${{movi.valorPagamento}}
             </ion-card-title>
@@ -57,11 +49,10 @@
 
             <br>
 
-            <ion-label><b>Porcetagem do Sitema:</b>{{ movi.orcentagemSistema}}</ion-label>
+            <ion-label><b>Porcetagem do Sitema:</b>{{ movi.porcentagemSistema }} %</ion-label>
             <br>
             <ion-label><b>Taxa de Serviço:</b>{{ movi.taxaServico}}</ion-label>
             <br>
-            <ion-label><b>Taxa de Serviço:</b>{{ movi.id}}</ion-label>
         </ion-card-content>
 
         <!-- <ion-tabs>

@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import { ModalController, NavParams, AlertController } from '@ionic/angular';
+import { ModalController, NavParams, AlertController, NavController } from '@ionic/angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
 import { Usuario } from 'src/app/Model/usuario';
@@ -11,6 +11,7 @@ import { Formacao } from './../../Model/formacao';
 import { Profissao } from './../../Model/profissao';
 import { UsuarioService } from './../../services/usuario.service';
 import { async } from '@angular/core/testing';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class CardComponent {
   profissao: string;
   idColecao: string;
   usuario:any=[];
-  user:any
+  user:Usuario={}
   formacao: Formacao={};
   prof: Profissao={};
   areaAtuacao: any;
@@ -51,7 +52,9 @@ export class CardComponent {
     private servicePublicacao: PublicacaoService,
     private serviceUsuario: UsuarioService,
     public navParams: NavParams,
-    public alertCtrl: AlertController,
+    public AlertCtrl :AlertController,
+    private router:  Router,
+    private navCtrl: NavController,
   ) {
     this.dadosAtualizacao= navParams.get('id')
     this.fbAuth.authState.subscribe(user=>{
@@ -66,8 +69,6 @@ export class CardComponent {
    }
 
   ngOnInit() {
-  
-
   }
 fecharModal(){
   this.modalCtrl.dismiss();
@@ -90,10 +91,7 @@ carregaUser(){
            this.experiencia = doc.data().profissao?.tempoExperiencia
            this.idColecao = doc.id
            console.log("id dacoleção do usuario " + this.idColecao)
-           this.usuarioSubscription = this.serviceUsuario.getUsuario(this.idColecao).subscribe(data=>{
-             this.user=data;
-             console.log(this.user);
-           })
+      
          }) 
         
          console.log("id dacoleção do usuario " + this.idColecao)
@@ -153,28 +151,16 @@ console.log("updade alteracao de valor" + this.publicacao.valorHora)
 
     }) 
 }
-// async showConfirm() {  
-//   const confirm = await this.alertCtrl.create({  
-//     header: 'Confirm!',  
-//     message: 'Do you agree to use this Alert option',  
-//     buttons: [  
-//       {  
-//         text: 'Cancel',  
-//         role: 'cancel',  
-//         handler: () => {  
-//           console.log('Confirm Cancel');  
-//         }  
-//       },  
-//       {  
-//         text: 'Okay',  
-//         handler: () => {  
-//           console.log('Confirm Okay.');  
-//         }  
-//       }  
-//     ]  
-//   });  
-//   await confirm.present();  
-// }  
+async alertaBloqueioAcesso(){
+  const alert = await this.AlertCtrl.create({
+    header:'Alerta',
+    subHeader:'Por favor complete seu perfil Pessoal e Profissional Clicando no icone no canto superior esquerdo da tela',
+    message: '<img src="/assets/img/engrenagem-100.png" />',
+    buttons: ['Ok'],
+    
+  });
+  await alert.present();
+    }
 }  
 
 

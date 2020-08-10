@@ -27,10 +27,10 @@ export class AtualizacaoPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.carregaDados();
+    this.carregaPublicacoes();
   }
 
-  carregaDados() {
+  carregaPublicacoes() {
     let lista=this.db.collection<Publicacao>("Publicacao")
    
      lista.ref.orderBy("dataPublicacao", "desc" ).get().then(res =>{
